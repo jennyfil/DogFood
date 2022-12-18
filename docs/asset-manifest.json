@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.573adc81.css",
+    "main.js": "/static/js/main.c1039a07.js",
+    "index.html": "/index.html",
+    "static/media/circle-xmark-regular.svg": "/static/media/circle-xmark-regular.8ef6e0a127f37e5c70a1e4bb4cb92f32.svg",
+    "static/media/magnifying-glass-solid.svg": "/static/media/magnifying-glass-solid.06e310dbfbf3ab21da478aef6c037c14.svg",
+    "main.573adc81.css.map": "/static/css/main.573adc81.css.map",
+    "main.c1039a07.js.map": "/static/js/main.c1039a07.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.573adc81.css",
+    "static/js/main.c1039a07.js"
+  ]
+}
