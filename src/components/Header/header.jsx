@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import Search from "../Search/search";
+import {Link} from "react-router-dom";
 import "./header.css";
+
+import logo from "../img/logo.svg";
 
 export default ({user, setUser, products, setModalActive}) => {
     const logIn = (e) => {
@@ -15,12 +18,12 @@ export default ({user, setUser, products, setModalActive}) => {
 
     return (
         <header>
-            <a className="logo" href="">
-                <img src="https://trip2trip.ru/pics/logo.svg" />
-            </a>
+            <Link className="logo" to="/">
+                <img src={logo} />
+            </Link>
             <Search data={products} />
             <nav className="menu">
-                {user && <a href="">{user}</a>}
+                {user && <Link to="/profile">{user}</Link>}
                 {!user && <a href="" onClick={logIn}>Войти</a>}
                 {user && <a href="" onClick={logOut}>Выйти</a>}
             </nav>

@@ -1,13 +1,15 @@
 import React from "react";
 import "./footer.css";
 
+import logo from "../img/logo.svg";
+
 export default () => {
     const year = new Date().getFullYear();
     return (
         <footer>
             <div className="footer__logo">
                 <a href="#">
-                    <img src="https://trip2trip.ru/pics/logo.svg" />
+                    <img src={logo} />
                 </a>
                 <div className="footer__copy">
                     ©️ {year} "Интернет-магазин DogFood.ru"

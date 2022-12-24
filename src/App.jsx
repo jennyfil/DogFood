@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {Routes, Route} from "react-router-dom";
 import "./style.css";
 import products from "./assets/data.json";
 
@@ -8,6 +9,8 @@ import Modal from "./components/Modal";
 
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
+import Profile from "./pages/Profile";
+import Product from "./pages/Product.jsx";
 
 import {Api} from "./Api.js";
 import dataLocal from "./assets/data.json";
@@ -74,7 +77,13 @@ const App = () => {
                     setModalActive={setModalActive}
                 />
                 <main>
-                    {user ? <Catalog data = {goods} /> : <Home data = {dataHome} />}
+                    <Routes>
+                        <Route path="/" element={<Home data = {dataHome} />} />
+                        <Route path="/catalog" element={<Catalog data = {goods} />} />
+                        <Route path="/profile" element={<Profile setUser={setUser} user={user}/>} />
+                        <Route path="/catalog/:id" element={<Product />} />
+                    </Routes>
+                    {/* {user ? <Catalog data = {goods} /> : <Home data = {dataHome} />} */}
                 </main>
                 <Footer />
             </div>
