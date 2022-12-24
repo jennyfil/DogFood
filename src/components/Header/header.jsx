@@ -5,7 +5,7 @@ import "./header.css";
 
 import logo from "../img/logo.svg";
 
-export default ({user, setUser, products, setModalActive}) => {
+export default ({user, setUser, goods, searchGoods, setModalActive}) => {
     const logIn = (e) => {
         e.preventDefault();
         setModalActive(prev => !prev);
@@ -21,7 +21,7 @@ export default ({user, setUser, products, setModalActive}) => {
             <Link className="logo" to="/">
                 <img src={logo} />
             </Link>
-            <Search data={products} />
+            <Search data={goods} searchGoods={searchGoods} />
             <nav className="menu">
                 {user && <Link to="/profile">{user}</Link>}
                 {!user && <a href="" onClick={logIn}>Войти</a>}

@@ -13,6 +13,33 @@ h1 {
     font-size: 1.2rem;
 }
 
+.empty-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    justify-content: center;
+    /* font-size: 4rem; */
+    /* margin-top: 40px; */
+}
+
+/* .empty-block>*:not(svg) {
+    font-size: 1rem;
+} */
+
+.empty-block svg {
+    font-size: 4rem;
+    fill: #dedede;
+}
+
+.empty-block .btn {
+    border: 1px solid #dedede;
+    border-radius: 18px;
+    display: flex;
+    padding: 6px 12px;
+}
+
 @media(max-width: 540px) {
     h1 {
         padding: 0;
