@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/godfood/static/css/main.868fe76b.css",
-    "main.js": "/godfood/static/js/main.8dbc1556.js",
+    "main.js": "/godfood/static/js/main.d8a10a73.js",
     "static/media/present.jpg": "/godfood/static/media/present.c8c340cb9aae06f50257.jpg",
     "static/media/dog-food-wet.png": "/godfood/static/media/dog-food-wet.14ca8eafb8934f4eaa75.png",
     "static/media/deer-antlers.png": "/godfood/static/media/deer-antlers.1806e11762310334cf7a.png",
@@ -13,10 +13,10 @@
     "static/media/circle-xmark-regular.svg": "/godfood/static/media/circle-xmark-regular.8ef6e0a127f37e5c70a1e4bb4cb92f32.svg",
     "static/media/magnifying-glass-solid.svg": "/godfood/static/media/magnifying-glass-solid.06e310dbfbf3ab21da478aef6c037c14.svg",
     "main.868fe76b.css.map": "/godfood/static/css/main.868fe76b.css.map",
-    "main.8dbc1556.js.map": "/godfood/static/js/main.8dbc1556.js.map"
+    "main.d8a10a73.js.map": "/godfood/static/js/main.d8a10a73.js.map"
   },
   "entrypoints": [
     "static/css/main.868fe76b.css",
-    "static/js/main.8dbc1556.js"
+    "static/js/main.d8a10a73.js"
   ]
 }

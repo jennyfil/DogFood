@@ -85,7 +85,7 @@ const App = () => {
                 />
                 <main>
                     <Routes>
-                        <Route path="/" element={<Home data = {dataHome} />} />
+                        <Route path="/godfood/" element={<Home data = {dataHome} />} />
                         <Route path="/catalog" element={<Catalog data = {visibleGoods} />} />
                         <Route path="/profile" element={<Profile setUser={setUser} user={user}/>} />
                         <Route path="/catalog/:id" element={<Product />} />
