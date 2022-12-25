@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import "./footer.css";
 
 import logo from "../img/logo.svg";
@@ -8,9 +9,9 @@ export default () => {
     return (
         <footer>
             <div className="footer__logo">
-                <a href="#">
+                <Link to="/godfood/">
                     <img src={logo} />
-                </a>
+                </Link>
                 <div className="footer__copy">
                     ©️ {year} "Интернет-магазин DogFood.ru"
                 </div>

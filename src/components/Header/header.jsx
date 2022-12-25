@@ -18,7 +18,7 @@ export default ({user, setUser, goods, searchGoods, setModalActive}) => {
 
     return (
         <header>
-            <Link className="logo" to="/">
+            <Link className="logo" to="/godfood/">
                 <img src={logo} />
             </Link>
             <Search data={goods} searchGoods={searchGoods} />
