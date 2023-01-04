@@ -45,7 +45,7 @@ export default ({user, setUser, goods, searchGoods, setModalActive}) => {
                 <Link className="btn-link" to="/catalog">
                     Каталог
                     <i class="fa-solid fa-angle-right"></i>
-                    </Link>
+                </Link>
             </div>
 
         </header>

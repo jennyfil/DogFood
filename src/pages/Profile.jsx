@@ -8,7 +8,7 @@ export default ({setUser, user}) => {
         e.preventDefault();
         setUser("");
         localStorage.removeItem("user");
-        navigate("/");
+        navigate("/godfood/");
     } 
     return (
         <>

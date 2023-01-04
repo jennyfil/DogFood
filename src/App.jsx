@@ -31,7 +31,6 @@ const App = () => {
     const [goods, setGoods] = useState([]);
     const [visibleGoods, setVisibleGoods] = useState(goods);
 
-
     useEffect(() => {
         if(token) {
             api.getProducts()
@@ -81,7 +80,8 @@ const App = () => {
                 <main>
                     <Routes>
                         <Route path="/godfood/" element={<Home data = {dataHome} />} />
-                        <Route path="/catalog" element={user ? <Catalog data = {visibleGoods} /> : <Catalog data = {visibleGoods} />} />
+                        {/* <Route path="/catalog" element={<Catalog data = {visibleGoods} />} /> */}
+                        <Route path="/catalog" element={user ? <Catalog data = {visibleGoods} /> : <Catalog data = {dataLocal} />} />
                         <Route path="/profile" element={<Profile setUser={setUser} user={user}/>} />
                         <Route path="/catalog/:id" element={<Product />} />
                     </Routes>
@@ -90,7 +90,6 @@ const App = () => {
             </div>
             <Modal isActive={modalActive} setState={setModalActive} api={api} setToken={setToken} />
         </>
-
     )
 }
 

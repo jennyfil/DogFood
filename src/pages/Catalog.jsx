@@ -7,7 +7,7 @@ import "./pages.css";
 export default ({data}) => {
     return (
         <>
-        {data.length > 0 
+        {data.length > 0
             ? <>
                 <h1>Каталог товаров</h1>
                 <div className="cards">
@@ -28,7 +28,7 @@ export default ({data}) => {
             <div className="empty-block">
                 <EmojiFrown />
                 <p style={{width: 250}}>Простите, по вашему запросу товаров не найдено</p>
-                <Link to="/" className="btn">На главную</Link>
+                <Link to="/godfood/" className="btn">На главную</Link>
             </div>
         }
         </>
