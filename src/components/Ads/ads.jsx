@@ -10,8 +10,6 @@ import dogFoodWetPic from "./img/dog-food-wet.png";
 import dogFoodMixedPic from "./img/dog-food-mixed.png";
 import butterPic from "./img/butter.png";
 
-
-
 export default ({data}) => {
     return (
         <>

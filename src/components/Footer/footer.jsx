@@ -19,8 +19,8 @@ export default () => {
             <div className="footer__contacts">
                 <div className="contacts">
                     <p>Мы на связи</p>
-                    <a className="phone" href="tel: +79450000000">8 (945) 000-00-00</a>
-                    <a href="mailto: dogfood.ru@mail.ru">dogfood.ru@mail.ru</a>
+                    <a className="phone" href="tel:+79450000000">8 (945) 000-00-00</a>
+                    <a href="mailto:dogfood.ru@mail.ru">dogfood.ru@mail.ru</a>
                 </div>
                 <div className="social-media">
                     <a href="#">

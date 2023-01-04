@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Routes, Route} from "react-router-dom";
 import "./style.css";
-// import products from "./assets/data.json";
 
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/footer";
@@ -16,14 +15,11 @@ import {Api} from "./Api.js";
 import dataLocal from "./assets/data.json";
 
 const dataHome = [];
-for(let i=0; i < 6; i++) {
+for(let i=0; i < 6;) {
     let j = Math.floor(Math.random() * 16);
-
     if(!dataHome.includes(dataLocal[j])) {
         dataHome.push(dataLocal[j]);
-    } else {
-        j = Math.floor(Math.random() * 16);
-        i--;
+        i++;
     }
 }
 
@@ -72,7 +68,6 @@ const App = () => {
         setVisibleGoods(goods);
     }, [goods])
 
-
     return (
         <>
             <div className="container">
@@ -86,11 +81,10 @@ const App = () => {
                 <main>
                     <Routes>
                         <Route path="/godfood/" element={<Home data = {dataHome} />} />
-                        <Route path="/catalog" element={<Catalog data = {visibleGoods} />} />
+                        <Route path="/catalog" element={user ? <Catalog data = {visibleGoods} /> : <Catalog data = {visibleGoods} />} />
                         <Route path="/profile" element={<Profile setUser={setUser} user={user}/>} />
                         <Route path="/catalog/:id" element={<Product />} />
                     </Routes>
-                    {/* {user ? <Catalog data = {goods} /> : <Home data = {dataHome} />} */}
                 </main>
                 <Footer />
             </div>

@@ -12,7 +12,7 @@ a {
 .container {
     min-height: 100vh;
     display: grid;
-    grid-template-rows: 100px auto 200px;
+    grid-template-rows: 500px auto 200px;
 }
 
 .container>*{
@@ -35,6 +35,9 @@ a {
 }
 
 @media (max-width: 720px) {
+    .container {
+        grid-template-rows: 430px auto 200px;
+    }
     body {
         font-size: 14px;
     }
@@ -44,10 +47,14 @@ a {
     main {
         text-align: center;
     }
+
 }
 
 @media (max-width: 360px) {
     body {
         font-size: 12px;
+    }
+    .container {
+        grid-template-rows: 350px auto 200px;
     }
 }
