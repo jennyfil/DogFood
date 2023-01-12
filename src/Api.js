@@ -101,8 +101,8 @@ class Api {
         })
     }
 
-    getProductById() {
-        return fetch(`${this.path}/products/${this.id}`, {
+    getProductById(id) {
+        return fetch(`${this.path}/products/${id}`, {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }
@@ -150,7 +150,7 @@ class Api {
         })
     }
 
-    deleteLike() {
+    deletLike() {
         return fetch(`${this.path}/products/likes/${this._id}`, {
             method: "DELETE",
             headers: {

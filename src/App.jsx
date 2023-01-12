@@ -14,6 +14,11 @@ import Product from "./pages/Product.jsx";
 import {Api} from "./Api.js";
 import dataLocal from "./assets/data.json";
 
+import Ctx from "./Ctx";
+
+// const PATH = "/";
+const PATH = "/godfood/";
+
 const dataHome = [];
 for(let i=0; i < 6;) {
     let j = Math.floor(Math.random() * 16);
@@ -24,7 +29,12 @@ for(let i=0; i < 6;) {
 }
 
 const App = () => {
-    const [user, setUser] = useState(localStorage.getItem("user"));
+    let usr = localStorage.getItem("user");
+    if(usr) {
+        usr = JSON.parse(usr);
+    }
+    
+    const [user, setUser] = useState(usr);
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [modalActive, setModalActive] = useState(false);
     const [api, setApi] = useState(new Api(token));
@@ -42,8 +52,12 @@ const App = () => {
     }, [])
 
     useEffect(() => {
+        let usr = localStorage.getItem("user");
         setApi(new Api(token));
-        setUser(localStorage.getItem("user"));
+        if(usr) {
+            usr = JSON.parse(usr);
+        }
+        setUser(usr);
     }, [token])
 
     useEffect(() => {
@@ -68,28 +82,35 @@ const App = () => {
     }, [goods])
 
     return (
-        <>
+        <Ctx.Provider value={{
+            user: user,
+            token: token,
+            api: api,
+            modalActive: modalActive,
+            goods: goods,
+            visibleGoods: visibleGoods,
+            setUser: setUser,
+            setToken: setToken,
+            setApi: setApi,
+            setModalActive: setModalActive,
+            setGoods: setGoods,
+            setVisibleGoods: setVisibleGoods,
+            PATH: PATH
+        }}>
             <div className="container">
-                <Header 
-                    user={user}
-                    setUser={setUser}
-                    goods={goods}
-                    searchGoods={setVisibleGoods}
-                    setModalActive={setModalActive}
-                />
+                <Header />
                 <main>
                     <Routes>
-                        <Route path="/godfood/" element={<Home data = {dataHome} />} />
-                        {/* <Route path="/catalog" element={<Catalog data = {visibleGoods} />} /> */}
-                        <Route path="/catalog" element={user ? <Catalog data = {visibleGoods} /> : <Catalog data = {dataLocal} />} />
-                        <Route path="/profile" element={<Profile setUser={setUser} user={user}/>} />
-                        <Route path="/catalog/:id" element={<Product />} />
+                        <Route path={PATH} element={<Home data = {dataHome} />} />
+                        <Route path={PATH + "catalog"} element={<Catalog data = {dataLocal} />} />
+                        <Route path={PATH + "profile"} element={<Profile />} />
+                        <Route path={PATH + "catalog/:id"} element={<Product />} />
                     </Routes>
                 </main>
                 <Footer />
             </div>
-            <Modal isActive={modalActive} setState={setModalActive} api={api} setToken={setToken} />
-        </>
+            <Modal />
+        </Ctx.Provider>
     )
 }
 

@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import Search from "../Search/search";
 import {Link} from "react-router-dom";
 import "./header.css";
+import Ctx from "../../Ctx";
 
 import logo from "../img/logo.svg";
 
-export default ({user, setUser, goods, searchGoods, setModalActive}) => {
+export default () => {
+    const {user, setUser, setModalActive, PATH} = useContext(Ctx);
     const logIn = (e) => {
         e.preventDefault();
         setModalActive(prev => !prev);
@@ -18,23 +20,13 @@ export default ({user, setUser, goods, searchGoods, setModalActive}) => {
 
     return (
         <header>
-            {/* <Link className="logo" to="/godfood/">
-                <img src={logo} />
-            </Link>
-            <Search data={goods} searchGoods={searchGoods} />
-            <nav className="menu">
-                {user && <Link to="/profile">{user}</Link>}
-                {!user && <a href="" onClick={logIn}>Войти</a>}
-                {user && <a href="" onClick={logOut}>Выйти</a>}
-            </nav> */}
-
             <div className="header-top">
-                <Link className="logo" to="/godfood/">
+                <Link className="logo" to={PATH}>
                     <img src={logo} />
                 </Link>
-                <Search data={goods} searchGoods={searchGoods} />
+                <Search />
                 <nav className="menu">
-                    {user && <Link to="/profile">{user}</Link>}
+                    {user && user.name && <Link to={PATH + "profile"}>{user.name}</Link>}
                     {!user && <a href="" onClick={logIn}>Войти</a>}
                     {user && <a href="" onClick={logOut}>Выйти</a>}
                 </nav>
@@ -42,9 +34,9 @@ export default ({user, setUser, goods, searchGoods, setModalActive}) => {
             <div className="header-bottom">
                 <h2>Крафтовые лакомства для собак</h2>
                 <p>Всегда свежие лакомства ручной работы с доставкой на дом по России и всему миру</p>
-                <Link className="btn-link" to="/catalog">
+                <Link className="btn-link" to={PATH + "catalog"}>
                     Каталог
-                    <i class="fa-solid fa-angle-right"></i>
+                    <i className="fa-solid fa-angle-right"></i>
                 </Link>
             </div>
 

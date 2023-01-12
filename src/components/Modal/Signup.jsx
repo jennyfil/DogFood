@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import Ctx from "../../Ctx";
 
-export default ({change, api, close, setToken}) => {
+export default ({change, close}) => {
+    const {api, setToken, setUser} = useContext(Ctx);
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
     const [confirmPwd, setConfirmPwd] = useState("");
@@ -32,9 +34,10 @@ export default ({change, api, close, setToken}) => {
                     api.signIn(body)
                         .then(res => res.json())
                         .then(data => {
-                            localStorage.setItem("user", data.data.name);
+                            localStorage.setItem("user", JSON.stringify(data.data));
                             localStorage.setItem("token", data.token);
                             setToken(data.token);
+                            // setUser(data.name);
                         })
                     setEmail("");
                     setPwd("");

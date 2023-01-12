@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import {Link} from "react-router-dom";
 import "./footer.css";
+import Ctx from "../../Ctx";
 
 import logo from "../img/logo.svg";
 
 export default () => {
+    const {PATH} = useContext(Ctx);
     const year = new Date().getFullYear();
     return (
         <footer>
             <div className="footer__logo">
-                <Link to="/godfood/">
-                    <img src={logo} />
+                <Link to={PATH}>
+                    <img src={logo} alt="Логотип сайта"/>
                 </Link>
                 <div className="footer__copy">
                     ©️ {year} "Интернет-магазин DogFood.ru"
@@ -24,13 +26,13 @@ export default () => {
                 </div>
                 <div className="social-media">
                     <a href="#">
-                        <i class="fa-brands fa-telegram"></i>
+                        <i className="fa-brands fa-telegram"></i>
                     </a>
                     <a href="#">
-                        <i class="fa-brands fa-vk"></i>
+                        <i className="fa-brands fa-vk"></i>
                     </a>
                     <a href="#">
-                        <i class="fa-brands fa-skype"></i>
+                        <i className="fa-brands fa-skype"></i>
                     </a>
                 </div>
             </div>

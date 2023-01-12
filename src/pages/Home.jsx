@@ -2,13 +2,19 @@ import React from "react";
 
 import "./pages.css";
 
-import Ads from "../components/Ads/ads";
-import {Link} from "react-router-dom";
+import FirstAdBlock from "../components/Ads/FirstAdBlock";
+import SecondAdBlock from "../components/Ads/SecondAdBlock";
+
+import CardsHomePage from "../components/CardsHomePage/CardsHomePage";
+import AdBlock from "../components/Ads/AdBlock";
 
 export default ({data}) => {
     return (
         <div className="home">
-            <Ads data={data}/>           
+            <FirstAdBlock />
+            <SecondAdBlock />
+            <CardsHomePage data={data} />
+            <AdBlock />
         </div>
     )
 }
