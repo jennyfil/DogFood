@@ -4,18 +4,13 @@ body {
     font-size: 16px;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.container {
+.wrapper {
     min-height: 100vh;
     display: grid;
     grid-template-rows: 500px auto 200px;
 }
 
-.container>*{
+.wrapper>*{
     padding: 0 calc(50% - 600px);
 }
 
@@ -25,8 +20,10 @@ a {
     gap: 1em;
 }
 
+
+
 @media (max-width: 1260px) {
-    .container>*{
+    .wrapper>*{
         padding: 0 30px;
     }
     .cards {
@@ -35,7 +32,7 @@ a {
 }
 
 @media (max-width: 720px) {
-    .container {
+    .wrapper {
         grid-template-rows: 430px auto 200px;
     }
     body {
@@ -54,7 +51,7 @@ a {
     body {
         font-size: 12px;
     }
-    .container {
+    .wrapper {
         grid-template-rows: 350px auto 200px;
     }
 }

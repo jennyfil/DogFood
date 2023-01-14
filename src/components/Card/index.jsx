@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 
-export default ({text, like, price, pictures, weight}) => {
+export default ({ text, like, price, pictures, weight }) => {
     return (
         <div className="card">
             <span className="card__heart">
@@ -16,7 +16,10 @@ export default ({text, like, price, pictures, weight}) => {
             </div>
             <div className="card__price">{price} руб</div>
             <div className="card__weight">{weight}</div>
+
             <h3>{text}</h3>
+
+            <button className="btn">Купить</button>
         </div>
     )
 }

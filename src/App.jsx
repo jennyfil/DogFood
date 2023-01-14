@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {Routes, Route} from "react-router-dom";
 import "./style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/footer";
@@ -10,6 +12,7 @@ import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
 import Profile from "./pages/Profile";
 import Product from "./pages/Product.jsx";
+import AddForm from "./pages/AddForm";
 
 import {Api} from "./Api.js";
 import dataLocal from "./assets/data.json";
@@ -44,10 +47,10 @@ const App = () => {
     useEffect(() => {
         if(token) {
             api.getProducts()
-                .then(res => res.json())
-                .then(data => {
-                    setGoods(data.products);
-                })
+            .then(res => res.json())
+            .then(data => {
+                setGoods(data.products);
+            })
         }
     }, [])
 
@@ -70,10 +73,10 @@ const App = () => {
     useEffect(() => {
         if(token) {
             api.getProducts()
-                .then(res => res.json())
-                .then(data => {
-                    setGoods(data.products);
-                })
+            .then(res => res.json())
+            .then(data => {
+                setGoods(data.products);
+            })
         }
     }, [api])
 
@@ -97,14 +100,15 @@ const App = () => {
             setVisibleGoods: setVisibleGoods,
             PATH: PATH
         }}>
-            <div className="container">
+            <div className="wrapper">
                 <Header />
                 <main>
                     <Routes>
                         <Route path={PATH} element={<Home data = {dataHome} />} />
-                        <Route path={PATH + "catalog"} element={<Catalog data = {dataLocal} />} />
+                        <Route path={PATH + "catalog"} element={<Catalog />} />
                         <Route path={PATH + "profile"} element={<Profile />} />
                         <Route path={PATH + "catalog/:id"} element={<Product />} />
+                        <Route path={PATH + "add"} element={<AddForm />} />
                     </Routes>
                 </main>
                 <Footer />

@@ -1,21 +1,54 @@
 import React, {useState, useEffect, useContext} from "react";
-import {useParams, Link} from "react-router-dom";
+import {useParams, Link, useNavigate} from "react-router-dom";
 import Review from "../components/Review/review";
 import Ctx from "../Ctx";
+import { Trash3 } from "react-bootstrap-icons";
 
 export default () => {
-    const {api, PATH} = useContext(Ctx);
+    const {api, PATH, user, setGoods} = useContext(Ctx);
     const {id} = useParams();
     const [product, setProduct] = useState({});
+    const navigate = useNavigate();
+
     useEffect(() => {
         api.getProductById(id)
-            .then(res => res.json()).then(data => {
+            .then(res => res.json())
+            .then(data => {
                 setProduct(data);
             })
-        }
-    )
+    }, []);
+
+    const btnSt = {
+        position: "absolute",
+        right: "20px",
+        top: "520px",
+        cursor: "pointer",
+        height: "auto"
+    };
+    
+    const remove = () => {
+        api.deleteProduct(id)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(!data.error) {
+                setGoods(prev => prev.filter(g => g._id !== data._id));
+                navigate(`${PATH}catalog`);
+            }
+        })
+    };
+
     return (
         <>
+            {product && product.author && product.author._id === user._id && <button 
+                    onClick={remove} 
+                    className="btn"
+                    style={btnSt}>
+                        <Trash3/>
+                        {/* <i className="fa-regular fa-trash-can"></i> */}
+                </button>
+            }
+
             <h1>{product.name || "Страница товара"}</h1>
             <p>{id}</p>
             <Link to={PATH + "catalog"}>Назад</Link>

@@ -5,6 +5,7 @@ import "./header.css";
 import Ctx from "../../Ctx";
 
 import logo from "../img/logo.svg";
+import {PlusCircle} from "react-bootstrap-icons";
 
 export default () => {
     const {user, setUser, setModalActive, PATH} = useContext(Ctx);
@@ -26,6 +27,7 @@ export default () => {
                 </Link>
                 <Search />
                 <nav className="menu">
+                    {user && <Link to={PATH + "add"}><PlusCircle style={{fontSize: "20px"}}/></Link>}
                     {user && user.name && <Link to={PATH + "profile"}>{user.name}</Link>}
                     {!user && <a href="" onClick={logIn}>Войти</a>}
                     {user && <a href="" onClick={logOut}>Выйти</a>}
