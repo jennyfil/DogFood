@@ -1,0 +1,18 @@
+.review {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* gap: 10px; */
+    padding: 25px;
+    font-size: 1em;
+}
+.review__author {
+    margin-bottom: 15px;
+}
+
+.review__rating {
+    margin-bottom: 10px;
+}
+
+.review__date {
+    font-size: 0.9em;
+}

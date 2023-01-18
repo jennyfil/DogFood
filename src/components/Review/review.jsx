@@ -1,5 +1,6 @@
 import React from "react";
 import {Star, StarFill} from "react-bootstrap-icons";
+import "./style.css";
 
 export default ({author, rating, created_at}) => {
     const setRating = (n) => {
@@ -13,11 +14,15 @@ export default ({author, rating, created_at}) => {
         return stars;
     }
 
+    // console.log(typeof author)
+    // console.log(author)
+
     return (
-        <>
-            <h3>{author || ""}</h3>
-            <div>{setRating(rating)}</div>
-            <div>{new Date(created_at).toLocaleString()}</div>
-        </>
+        <div className="review">
+            {/* <p>{author ? author.name : ""}</p> */}
+            <div className="review__author">{author || ""}</div>
+            <div className="review__rating">{setRating(rating)}</div>
+            <div className="review__date">{new Date(created_at).toLocaleString()}</div>
+        </div>
     )
 }

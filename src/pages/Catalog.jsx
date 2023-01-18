@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import Card from "../components/Card";
+import Card from "../components/Card/Card";
 import {Link} from "react-router-dom";
 import {EmojiFrown} from "react-bootstrap-icons";
 import "./pages.css";
@@ -7,29 +7,18 @@ import Ctx from "../Ctx";
 
 export default () => {
     const {visibleGoods, user, PATH} = useContext(Ctx);
-    // console.log(visibleGoods)
     return (
             <>
             {user && 
                 <> {visibleGoods.length > 0
                         ? <>
-                            <h1>Каталог товаров</h1>
+                            <p className="catalog-header">Каталог товаров</p>
                             <div className="cards">
 
-                                {visibleGoods.map((el, i) => {
-                                    // {console.log(el)}
-                                    <Link to={`${PATH}catalog/${el._id}`} key={el._id}>
-                                        <Card 
-                                            // {...el}
-                                            key={"card_" + i}
-                                            text={el.name}
-                                            like={(i+1) % 2 === 0}
-                                            price={el.price}
-                                            pictures={el.pictures}
-                                            weight={el.wight}
-                                        />
+                                {visibleGoods.map((el, i) => <Link to={`${PATH}catalog/${el._id}`} key={el._id}>
+                                        <Card {...el} key={"card_" + i} />
                                     </Link>
-                                    })
+                                    )
                                 }
                             </div>
                         </>

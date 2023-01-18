@@ -5,7 +5,7 @@ import presentPic from "./img/present.jpg";
 
 export default () => {
     return (
-            <a href="" className="first-block">
+            <div className="first-block">
                 <div className="first-block__item">
                     <h2>Подарок за
                         <br />
@@ -13,6 +13,6 @@ export default () => {
                     <p>Сухой корм "Мясное изобилие"</p>
                 </div>
                 <img src={presentPic} />
-            </a>  
+            </div>  
     )
 }

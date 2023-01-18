@@ -1,0 +1,128 @@
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    min-width: 250px;
+    height: 500px;
+    box-shadow: 0 0 5px #2226;
+    border-radius: 1em;
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 0.5em;
+    justify-content: center;
+    align-items: center;
+}
+
+.card:hover {
+    color: black;
+    box-shadow: 0px 2px 4px rgba(40, 41, 61, 0.04), 0px 8px 16px rgba(96, 97, 115, 0.6);
+}
+
+.card__sticky {
+    position: absolute;
+    padding: 10px 15px;
+    font-size: 1.5em;
+}
+
+.card__sticky_top-left {
+    top: 0;
+    left: 0;
+    color: #f44336;
+}
+
+.card__sticky_top-right {
+    top: 0;
+    right: 0;
+}
+
+.card__discount {
+    padding: 2px 8px;
+    font-weight: 800;
+    font-size: 0.9em;
+    color: #fff;
+    background-color: #f44336;
+    border-radius: 20px;
+}
+
+.card__pic {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.card img {
+    max-width: 100%;
+    min-height: 100%;
+}
+
+.card__price,
+.card__old-price,
+.card__weight {
+    align-self: flex-start;
+}
+
+.card__price {
+    color: #000;
+    font-size: 1.3em;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.card__price_type_discount {
+    color: #f44336;
+}
+
+.card__old-price {
+    font-weight: 600;
+    text-decoration: line-through;
+    height: 1em;
+}
+
+.card__weight {
+    opacity: 0.7;
+}
+
+.card h3 {
+    align-self: flex-start;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.btn-card {
+    padding: 10px 25px;
+    background-color: rgb(220, 211, 39);
+    border-radius: 24px;
+    font-size: 1.1em;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.btn-card:hover {
+    color: #f44336;
+    background-color: #f6b845; 
+}
+
+@media(max-width: 540px) {
+    .card {
+        width: 290px;
+    }
+    .card__pic {
+        height: 150px;
+    }
+    .card h3 {
+        align-self: stretch;
+        font-size: 1.1em;
+    }
+}

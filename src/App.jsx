@@ -3,7 +3,6 @@ import {Routes, Route} from "react-router-dom";
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/footer";
 import Modal from "./components/Modal";
@@ -102,6 +101,7 @@ const App = () => {
         }}>
             <div className="wrapper">
                 <Header />
+                
                 <main>
                     <Routes>
                         <Route path={PATH} element={<Home data = {dataHome} />} />

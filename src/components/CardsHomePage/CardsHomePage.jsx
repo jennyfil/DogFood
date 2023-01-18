@@ -1,18 +1,12 @@
 import React from "react";
 import "./style.css";
-import Card from "../Card";
+import Card from "../Card/Card";
 
 export default ({data}) => {
+    const flag = "true";
     return (
         <div className="cards">
-            {data.map((el, i) => <Card
-                                    key={"card_" + i}
-                                    text={el.name}
-                                    like={(i+1) % 2 === 0}
-                                    price={el.price}
-                                    pictures={el.pictures}
-                                    weight={el.wight}
-                                    />)}
+            {data.map((el, i) => <Card {...el} flag={flag} key={"card_" + i} />)}
         </div>
     )
 }
