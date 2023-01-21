@@ -1,0 +1,12 @@
+.page-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.page-container .page {
+    height: auto;
+    font-size: 14px;
+
+}

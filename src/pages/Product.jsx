@@ -1,14 +1,20 @@
 import React, {useState, useEffect, useContext} from "react";
 import {useParams, Link, useNavigate} from "react-router-dom";
-import Review from "../components/Review/review";
+import Review from "../components/Review/Review";
 import Ctx from "../Ctx";
+import { Row, Col, Form } from "react-bootstrap";
 import { Trash3, Truck, Check2Circle, PencilSquare } from "react-bootstrap-icons";
 
 export default () => {
     const {api, PATH, user, setGoods} = useContext(Ctx);
     const {id} = useParams();
     const [product, setProduct] = useState({});
+    const [rating, setRating] = useState(0);
+    const [text, setText] = useState("");
+    const [active, setActive] = useState(false);
     const navigate = useNavigate();
+
+    const productDiscountPrice = Math.round(product.price - (product.price * product.discount) / 100);
 
     useEffect(() => {
         api.getProductById(id)
@@ -17,13 +23,6 @@ export default () => {
                 setProduct(data);
             })
     }, []);
-
-    // if(product.author) {
-        // console.log(product.author)
-        // console.log(typeof product)
-    // }
-
-    const productDiscountPrice = Math.round(product.price - (product.price * product.discount) / 100);
 
     const remove = () => {
         api.deleteProduct(id)
@@ -37,22 +36,51 @@ export default () => {
         })
     };
 
+
+    const handlerSubmit = (e) => {
+        e.preventDefault();
+        let body = {
+            rating: rating,
+            text: text || " ",
+        };
+
+        api.addReview(id, body)
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data);
+            if(!data.error) {
+                setGoods(prev => [...prev, data]);
+                clear();
+                navigate(`${PATH}catalog/${data._id}`);
+            }
+        })
+    };
+
+    const clear = (e) => {
+        setRating(0);
+        setText("");
+    };
+
     return (
         <>
             <Link className="product-card__link" to={PATH + "catalog"}>
                 <i className="fa-solid fa-angle-left"></i>  Назад
             </Link>
 
-            {product && product.author && product.author._id === user._id && <button 
+            {product && product.author && product.author._id === user._id && 
+                <div className="btn-block">
+                    <Link className="btn-change" to={`${PATH}modify/${id}`}>
+                        <PencilSquare />
+                    </Link>
+
+                    <button 
                     onClick={remove} 
                     className="btn-change">
-                        <PencilSquare />
                         <Trash3 />
-                </button>
-            }
+                    </button>
+                </div>}
 
             <h2>{product.name || "Страница товара"}</h2>
-            
             <div className="product-card">
 
                 <div className="product__info-pic">
@@ -100,12 +128,9 @@ export default () => {
                         </div>
                     </div>
                 </div>
-
-
                 <div className="product-description">
                     <span>Описание</span>
                     <p>{product.description}</p>
-
                     <span>Характеристики</span>
                     <div className="product-description__table">
                         <div>Вес</div>
@@ -115,33 +140,52 @@ export default () => {
                         <div>{product.stock} шт</div>
                         
                     </div>
-            
                     <span>Отзывы</span>
-                    <button className="btn-review">Написать отзыв</button>
                     <div className="reviews">
-                        {product.reviews && product.reviews.length > 0 &&
-                        product.reviews.map((el, i) =>
-                            <Review {...el} key={i} />
+
+                        <button className="btn-review" 
+                        onClick={() => setActive(!active)}
+                        >Оставить отзыв</button>
+
+                        <Form 
+                        className={active ? "active" : "add-review"}
+                        onSubmit={handlerSubmit}
+                        >
+                            <Row>
+                                <Col xs={12} md={6}>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Оценка</Form.Label>
+                                        <Form.Control 
+                                            type="number"
+                                            value={rating} 
+                                            required
+                                            onChange={e => setRating(e.target.value)}
+                                            min="1"
+                                            max="5" />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Отзыв</Form.Label>
+                                        <Form.Control 
+                                            as="textarea"
+                                            rows={4}
+                                            value={text}
+                                            onChange={e => setText(e.target.value)} />
+                                    </Form.Group>
+                                    <button className="product__btn-card" type="submit">
+                                        Отправить
+                                    </button>
+                                </Col>
+                            </Row>
+                        </Form>
+
+                        {product.reviews && 
+                            product.reviews.length > 0 &&
+                            product.reviews.map((el, i) =>
+                                <Review {...el} key={i} />
                         )}
                     </div>
                 </div>
             </div>
-
-
-
-
-            {/* <h1>{product.name || "Страница товара"}</h1> */}
-            {/* <p>{id}</p> */}
-
-            {/* <p>Отзывы</p>
-            <div className="reviews">
-                {product.reviews && product.reviews.length > 0 &&
-                product.reviews.map((el, i) =>
-                    <Review {...el} key={i} />
-                )}
-            </div> */}
         </>
-
-
     )
 }

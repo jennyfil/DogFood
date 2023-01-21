@@ -55,8 +55,8 @@ class Api {
         })
     }
 
-    getUserById() {
-        return fetch(`${this.path}/v2/group-8/users/${this._id}`, { //как обратиться к id пользователя?
+    getUserById(userId) {
+        return fetch(`${this.path}/v2/group-8/users/${userId}`, {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }
@@ -101,8 +101,8 @@ class Api {
         })
     }
 
-    getProductById(id) {
-        return fetch(`${this.path}/products/${id}`, {
+    getProductById(productId) {
+        return fetch(`${this.path}/products/${productId}`, {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }
@@ -120,8 +120,8 @@ class Api {
         });
     }
 
-    modifyProduct(body) {
-        return fetch(`${this.path}/products/${this._id}`, {
+    modifyProduct(productId, body) {
+        return fetch(`${this.path}/products/${productId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -131,8 +131,8 @@ class Api {
         })
     }
 
-    deleteProduct(id) {
-        return fetch(`${this.path}/products/${id}`, {
+    deleteProduct(productId) {
+        return fetch(`${this.path}/products/${productId}`, {
             method: "DELETE",
             headers: {
                 "authorization": `Bearer ${this.token}`
@@ -140,28 +140,16 @@ class Api {
         })
     }
 
-    addLike(body) {
-        return fetch(`${this.path}/products/likes/${this._id}`, {
-            method: "PUT",
+    setLike(productId, isLike) {
+        return fetch(`${this.path}/products/likes/${productId}`, {
+            method: isLike ? "DELETE" : "PUT",
             headers: {
-                "authorization": `Bearer ${this.token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
+                "authorization": `Bearer ${this.token}`            }
         })
     }
 
-    deletLike() {
-        return fetch(`${this.path}/products/likes/${this._id}`, {
-            method: "DELETE",
-            headers: {
-                "authorization": `Bearer ${this.token}`
-            }
-        })
-    }
-
-    addReview(body) {
-        return fetch(`${this.path}/products/review/${this._id}`, {
+    addReview(productId, body) {
+        return fetch(`${this.path}/products/review/${productId}`, {
             method: "POST",
             headers: {
                 "authorization": `Bearer ${this.token}`,
@@ -171,8 +159,8 @@ class Api {
         })
     }
 
-    deleteReview() {
-        return fetch(`${this.path}/products/review/${this._id}/${this.reviews.id}`, {
+    deleteReview(productId, reviewId) {
+        return fetch(`${this.path}/products/review/${productId}/${reviewId}`, {
             method: "DELETE",
             headers: {
                 "authorization": `Bearer ${this.token}`
@@ -188,8 +176,8 @@ class Api {
         })
     }
 
-    getProductReview() {
-        return fetch(`${this.path}/products/review/${this.id}`, {
+    getProductReview(productId) {
+        return fetch(`${this.path}/products/review/${productId}`, {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }

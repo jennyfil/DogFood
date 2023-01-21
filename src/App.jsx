@@ -12,11 +12,13 @@ import Catalog from "./pages/Catalog";
 import Profile from "./pages/Profile";
 import Product from "./pages/Product.jsx";
 import AddForm from "./pages/AddForm";
+import ModifyForm from "./pages/ModifyForm";
 
 import {Api} from "./Api.js";
 import dataLocal from "./assets/data.json";
 
 import Ctx from "./Ctx";
+import Favorites from "./pages/Favorites";
 
 // const PATH = "/";
 const PATH = "/godfood/";
@@ -42,6 +44,7 @@ const App = () => {
     const [api, setApi] = useState(new Api(token));
     const [goods, setGoods] = useState([]);
     const [visibleGoods, setVisibleGoods] = useState(goods);
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
         if(token) {
@@ -81,6 +84,9 @@ const App = () => {
 
     useEffect(() => {
         setVisibleGoods(goods);
+        setFavorites(goods.filter(el =>{
+            el.likes.includes(user._id);
+        }))
     }, [goods])
 
     return (
@@ -91,12 +97,14 @@ const App = () => {
             modalActive: modalActive,
             goods: goods,
             visibleGoods: visibleGoods,
+            favorites: favorites,
             setUser: setUser,
             setToken: setToken,
             setApi: setApi,
             setModalActive: setModalActive,
             setGoods: setGoods,
             setVisibleGoods: setVisibleGoods,
+            setFavorites: setFavorites,
             PATH: PATH
         }}>
             <div className="wrapper">
@@ -109,6 +117,9 @@ const App = () => {
                         <Route path={PATH + "profile"} element={<Profile />} />
                         <Route path={PATH + "catalog/:id"} element={<Product />} />
                         <Route path={PATH + "add"} element={<AddForm />} />
+                        <Route path={PATH + "modify/:id"} element={<ModifyForm />} />
+                        <Route path={PATH + "favorites"} element={<Favorites />} />                        
+
                     </Routes>
                 </main>
                 <Footer />

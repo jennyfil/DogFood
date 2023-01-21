@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router";
+import React, { useState, useContext, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Ctx from "../Ctx";
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 
 export default () => {
     const [name, setName] = useState("");
@@ -14,6 +14,21 @@ export default () => {
 
     const {api, PATH, setGoods} = useContext(Ctx);
     const navigate = useNavigate();
+    const {id} = useParams();
+
+    useEffect(() => {
+        api.getProductById(id)
+        .then(res => res.json())
+        .then(data => {
+            setName(data.name)
+            setPrice(data.price)
+            setWeight(data.wight)
+            setStock(data.stock)
+            setDiscount(data.discount)
+            setDescription(data.description)
+            setPictures(data.pictures)
+        })
+    }, [])
 
     const handler = (e) => {
         e.preventDefault();
@@ -26,11 +41,11 @@ export default () => {
             discount: discount,
             pictures: pictures
         }
-        // console.log(body);
-        api.addProduct(body)
+
+        api.modifyProduct(id, body)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             if(!data.error) {
                 setGoods(prev => [...prev, data]);
                 clear();
@@ -51,7 +66,10 @@ export default () => {
 
     return (
         <>
-            <p className="form-header">Добавить товар</p>
+            <Link className="product-card__link" to={`${PATH}catalog/${id}`}>
+                <i className="fa-solid fa-angle-left"></i>  Назад
+            </Link>
+            <p className="form-header">Изменить товар</p>
             <Form onSubmit={handler}>
                 <Row>
                     <Col xs={12} md={6}>
@@ -127,7 +145,7 @@ export default () => {
                         </Form.Group>
 
                         <button className="product__btn-card" type="submit">
-                            Добавить
+                            Изменить
                         </button>
                     </Col>
                 </Row>
