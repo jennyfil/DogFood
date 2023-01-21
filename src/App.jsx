@@ -32,6 +32,8 @@ for(let i=0; i < 6;) {
     }
 }
 
+// const smiles = [<span>^_^</span>, "=)", "O_o", ";(", "^_0", "@_@", "–_–"];
+
 const App = () => {
     let usr = localStorage.getItem("user");
     if(usr) {
@@ -85,7 +87,7 @@ const App = () => {
     useEffect(() => {
         setVisibleGoods(goods);
         setFavorites(goods.filter(el =>{
-            el.likes.includes(user._id);
+            return el.likes && el.likes.includes(user._id);
         }))
     }, [goods])
 
@@ -118,9 +120,16 @@ const App = () => {
                         <Route path={PATH + "catalog/:id"} element={<Product />} />
                         <Route path={PATH + "add"} element={<AddForm />} />
                         <Route path={PATH + "modify/:id"} element={<ModifyForm />} />
-                        <Route path={PATH + "favorites"} element={<Favorites />} />                        
+                        <Route path={PATH + "favorites"} element={<Favorites />} />
+                        {/* <Route path={PATH + "fake/:n/:title"} element={<Fake />} />*/}
 
                     </Routes>
+                    {/* <ul>
+                        {smiles.map((el, i) => <li key={el}>
+                                <Link to={`${PATH}fake/${i+1}/${el}`}>{el}</Link>
+                            </li>
+                        )}
+                    </ul> */}
                 </main>
                 <Footer />
             </div>

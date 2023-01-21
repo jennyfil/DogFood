@@ -27,12 +27,12 @@ h3 {
     position: absolute;
     padding: 10px 15px;
     font-size: 1.5em;
+    color: #f44336;
 }
 
 .card__sticky_top-left {
     top: 0;
     left: 0;
-    color: #f44336;
 }
 
 .card__sticky_top-right {

@@ -1,33 +1,38 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Ctx from "../../Ctx";
 import "./style.css";
-
 
 export default ({ flag, name, likes, price, pictures, wight, discount, _id }) => {
     const {user, setFavorites, api, setGoods} = useContext(Ctx);
     const discountPrice = Math.round(price - (price * discount) / 100);
-    // const [like, setLike] = useState(likes.includes(user._id));
+    const [like, setLike] = useState(likes && likes.includes(user._id));
+    
+    const update = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        setLike(!like);
 
-    // const update = (e) => {
-    //     e.stopPropagation();
-    //     e.preventDefault();
-    //     setLike(!like);
+        api.setLike(_id, like)
+        .then(res => res.json())
+        .then(data => {
+            setFavorites(prev => {
+                let arr = prev.filter(el => el._id === _id)
+                return arr.length > 0 ? 
+                prev.filter(el => el._id !== _id) : 
+                [...prev, data]
+            })
+        })
+    }
 
-    //     api.setLike(_id, like)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setFavorites(prev => {
-    //             let arr = prev.filter(el => el._id === _id)
-    //             return arr.length > 0 ? 
-    //             prev.filter(el => el._id !== _id) : 
-    //             [...prev, data]
-    //         })
-    //         setGoods(prev => prev.map(el => el._id !== _id 
-    //             && like ? 
-    //             el.likes.push(user._id) : 
-    //             el.likes.filter(l => l !== user._id)))
-    //     })
-    // }
+    useEffect(() => {
+        api.getProducts()
+        .then(res => res.json())
+        .then(data => {
+            if(!data.error) {
+                setGoods(data.products);
+            }
+        })
+    }, [like])
 
     return (
         <div className="card">
@@ -35,20 +40,12 @@ export default ({ flag, name, likes, price, pictures, wight, discount, _id }) =>
                 {discount > 0 && <span className="card__discount">{discount} %</span>}
             </div>
 
-            {/* <span className="card__sticky card__sticky_top-right" onClick={update}>
+            <span className="card__sticky card__sticky_top-right" onClick={update}>
                 {
                 like
                 ? <i className="fa-solid fa-heart"></i>
                 : <i className="fa-regular fa-heart"></i>
                 }
-            </span> */}
-
-            <span className="card__sticky card__sticky_top-right">
-                {/* {
-                like
-                ? <i className="fa-solid fa-heart"></i>
-                : <i className="fa-regular fa-heart"></i>
-                } */}
             </span>
 
             <div className="card__pic">

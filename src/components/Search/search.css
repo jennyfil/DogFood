@@ -26,6 +26,8 @@
     background-color: transparent;
     border: none;
     height: 20px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .search-block svg {

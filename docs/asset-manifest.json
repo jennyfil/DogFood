@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/godfood/static/css/main.479e2dfc.css",
-    "main.js": "/godfood/static/js/main.86f5de42.js",
+    "main.css": "/godfood/static/css/main.6c6c2182.css",
+    "main.js": "/godfood/static/js/main.0c80efad.js",
     "static/media/present.jpg": "/godfood/static/media/present.c8c340cb9aae06f50257.jpg",
     "static/media/dog-food-wet.png": "/godfood/static/media/dog-food-wet.14ca8eafb8934f4eaa75.png",
     "static/media/deer-antlers.png": "/godfood/static/media/deer-antlers.1806e11762310334cf7a.png",
@@ -12,11 +12,11 @@
     "index.html": "/godfood/index.html",
     "static/media/circle-xmark-regular.svg": "/godfood/static/media/circle-xmark-regular.8ef6e0a127f37e5c70a1e4bb4cb92f32.svg",
     "static/media/magnifying-glass-solid.svg": "/godfood/static/media/magnifying-glass-solid.06e310dbfbf3ab21da478aef6c037c14.svg",
-    "main.479e2dfc.css.map": "/godfood/static/css/main.479e2dfc.css.map",
-    "main.86f5de42.js.map": "/godfood/static/js/main.86f5de42.js.map"
+    "main.6c6c2182.css.map": "/godfood/static/css/main.6c6c2182.css.map",
+    "main.0c80efad.js.map": "/godfood/static/js/main.0c80efad.js.map"
   },
   "entrypoints": [
-    "static/css/main.479e2dfc.css",
-    "static/js/main.86f5de42.js"
+    "static/css/main.6c6c2182.css",
+    "static/js/main.0c80efad.js"
   ]
 }

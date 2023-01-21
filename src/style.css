@@ -4,6 +4,10 @@ body {
     font-size: 16px;
 }
 
+a:hover {
+    
+}
+
 .wrapper {
     min-height: 100vh;
     display: grid;
