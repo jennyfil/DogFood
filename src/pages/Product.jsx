@@ -62,7 +62,7 @@ export default () => {
     };
 
     return (
-        <>
+        <div className="product-container">
             <Link className="product-card__link" to={PATH + "catalog"}>
                 <i className="fa-solid fa-angle-left"></i>  Назад
             </Link>
@@ -81,17 +81,14 @@ export default () => {
                 </div>}
 
             <h2>{product.name || "Страница товара"}</h2>
+
             <div className="product-card">
-
                 <div className="product__info-pic">
-
                     <div className="product-card__sticky card__sticky_top-left">
                         {product.discount > 0 && <span className="product-card__discount">{product.discount} %</span>}
                     </div>
 
-                    <div className="info-pic">
-                        <img src={product.pictures} alt="Здесь будет фотография товара" />
-                    </div>
+                    <img src={product.pictures} alt="Здесь будет фотография товара" />
 
                     <div className="product__info-price">
                         <div className="product__price-and-price-discount">
@@ -101,14 +98,12 @@ export default () => {
                                     ? 
                                     "product__price product__price_type_discount" 
                                     : 
-                                    "product__price"}>{productDiscountPrice} руб</span>
+                                    "product__price"}>{productDiscountPrice} руб
+                            </span>
                         </div>
-
-
                         <div className="product__cart">
                             <div className="product__number"></div>
                             <button className="product__btn-card">В корзину</button>
-
                         </div>
 
                         <div className="product__about">
@@ -128,6 +123,8 @@ export default () => {
                         </div>
                     </div>
                 </div>
+
+                
                 <div className="product-description">
                     <span>Описание</span>
                     <p>{product.description}</p>
@@ -142,7 +139,6 @@ export default () => {
                     </div>
                     <span>Отзывы</span>
                     <div className="reviews">
-
                         <button className="btn-review" 
                         onClick={() => setActive(!active)}
                         >Оставить отзыв</button>
@@ -186,6 +182,6 @@ export default () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

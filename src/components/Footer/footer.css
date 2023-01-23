@@ -53,7 +53,7 @@ footer {
     }
     .footer__contacts {
         order: 1;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
     .contacts p,
     .contacts a {

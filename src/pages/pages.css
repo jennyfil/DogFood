@@ -53,10 +53,17 @@ a {
 }
 
 /*--------- Product ---------*/
+.product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 .btn-block {
     position: absolute;
-    right: 30px;
-    top: 530px;
+    right: 0;
+    top: 0;
     font-size: 20px;
     display: flex;
     gap: 20px;
@@ -71,15 +78,17 @@ a {
 }
 
 .product-card__link {
+    align-self: flex-start;
     display: block;
     font-size: 1.2em;
     padding: 15px 0;
 }
 
-h2 {
+.product-container h2 {
     font-size: 1.7em;
     margin-bottom: 30px;
     font-weight: 700;
+    align-self: flex-start;
 }
 
 .product-card {
@@ -94,6 +103,8 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    text-align: left;
+    max-width: 400px;
 }
 
 .product__price-and-price-discount {
@@ -103,14 +114,17 @@ h2 {
 }
 
 .product__info-pic {
-    height: 600px;
     display: flex;
-    gap: 60px;
+    gap: 40px;
     margin-bottom: 40px;
 }
 
 .product__info-pic img {
+    padding: 30px;
     height: 100%;
+    display: block;
+    align-self: center;
+    min-width: 400px;
 }
 
 .product-card__discount {
@@ -140,7 +154,6 @@ h2 {
 }
 
 .product__about {
-    width: 400px;
     padding: 20px;
     display: flex;
     gap: 25px;
@@ -159,7 +172,7 @@ h2 {
 
 .about-block__info p {
     font-size: 1em;
-    line-height: 1.5em;
+    line-height: 1.4em;
 }
 
 .about-block__info p:first-child {
@@ -169,7 +182,7 @@ h2 {
 
 .about-icon {
     padding: 0;
-    font-size: 30px;
+    font-size: 2em;
 }
 
 .check-circle {
@@ -197,8 +210,8 @@ h2 {
 }
 
 .product-description {
-    width: 1000px;
     font-size: 1.1em;
+    text-align: left;
 }
 
 .product-description span {
@@ -231,6 +244,7 @@ h2 {
 .btn-review:hover {
     color: black;
     background-color: rgb(187, 186, 186);
+    border: none;
 }
 
 /*--------- AddReviewForm ---------*/
@@ -259,6 +273,10 @@ Form {
     .home {
         margin: -50px auto 0;
     }
+    .product__info-price{
+        min-width: 350px;
+        max-width: none;
+    }
 }
 
 @media(max-width: 540px) {
@@ -268,6 +286,13 @@ Form {
     .home {
         margin: -40px auto 0;
     }
+    .product__info-pic {
+        flex-direction: column;
+    }
+    .product__about {
+        padding: 20px;
+    }
+
 }
 
 @media(max-width: 360px) {
