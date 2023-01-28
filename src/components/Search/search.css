@@ -1,9 +1,11 @@
 .search-block {
-    min-width: 500px;
+    min-width: 50%;
     width: max-content;
     display: flex;
     align-items: center;
     position: relative;
+    align-self: center;
+    margin-bottom: 2em;
 }
 
 .search-block>input {
@@ -48,9 +50,6 @@
 }
 
 @media(max-width: 720px) {
-    .search-block {
-        min-width: 300px;
-    }
     .search-block>input {
         height: 24px;
         padding: 16px 12px;
@@ -63,7 +62,7 @@
 
 @media(max-width: 540px) {
     .search-block {
-        min-width: 200px;
+        margin-bottom: 1.3em;
     }
     .search-block>input {
         height: 22px;

@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import Ctx from "../Ctx";
 import { Row, Col, Form } from "react-bootstrap";
+
+import Ctx from "../Ctx";
 
 export default () => {
     const [name, setName] = useState("");
@@ -45,7 +46,6 @@ export default () => {
         api.modifyProduct(id, body)
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
             if(!data.error) {
                 setGoods(prev => [...prev, data]);
                 clear();

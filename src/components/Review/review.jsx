@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
 import {Star, StarFill} from "react-bootstrap-icons";
 
 import "./style.css";
+
 import Ctx from "../../Ctx";
 
 export default ({ author, rating, text, created_at, product, _id }) => {
@@ -28,7 +28,6 @@ export default ({ author, rating, text, created_at, product, _id }) => {
             .then(res =>res.json())
             .then(data => {
                 if(!data.error) {
-                    // console.log(data);
                     setGoods(prev => [...prev, data]);
                     navigate(`${PATH}catalog/${product}`);
                 }
@@ -43,8 +42,6 @@ export default ({ author, rating, text, created_at, product, _id }) => {
             setName(data.name);
         })
     }, [])
-
-    // console.log(author)
 
     return (
         <div className="review-container">

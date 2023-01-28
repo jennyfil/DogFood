@@ -1,24 +1,23 @@
 import React, {useState, useEffect} from "react";
 import {Routes, Route} from "react-router-dom";
-import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import "./style.css";
 
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/footer";
 import Modal from "./components/Modal";
-
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
 import Profile from "./pages/Profile";
 import Product from "./pages/Product.jsx";
 import AddForm from "./pages/AddForm";
 import ModifyForm from "./pages/ModifyForm";
+import Favorites from "./pages/Favorites";
 
 import {Api} from "./Api.js";
 import dataLocal from "./assets/data.json";
-
 import Ctx from "./Ctx";
-import Favorites from "./pages/Favorites";
 
 // const PATH = "/";
 const PATH = "/godfood/";
@@ -31,8 +30,6 @@ for(let i=0; i < 6;) {
         i++;
     }
 }
-
-// const smiles = [<span>^_^</span>, "=)", "O_o", ";(", "^_0", "@_@", "–_–"];
 
 const App = () => {
     let usr = localStorage.getItem("user");
@@ -86,9 +83,7 @@ const App = () => {
 
     useEffect(() => {
         setVisibleGoods(goods);
-        setFavorites(goods.filter(el =>{
-            return el.likes && el.likes.includes(user._id);
-        }))
+        setFavorites(goods.filter(el => el.likes && el.likes.includes(user._id)))
     }, [goods])
 
     return (
@@ -111,7 +106,6 @@ const App = () => {
         }}>
             <div className="wrapper">
                 <Header />
-                
                 <main>
                     <Routes>
                         <Route path={PATH} element={<Home data = {dataHome} />} />
@@ -121,15 +115,8 @@ const App = () => {
                         <Route path={PATH + "add"} element={<AddForm />} />
                         <Route path={PATH + "modify/:id"} element={<ModifyForm />} />
                         <Route path={PATH + "favorites"} element={<Favorites />} />
-                        {/* <Route path={PATH + "fake/:n/:title"} element={<Fake />} />*/}
 
                     </Routes>
-                    {/* <ul>
-                        {smiles.map((el, i) => <li key={el}>
-                                <Link to={`${PATH}fake/${i+1}/${el}`}>{el}</Link>
-                            </li>
-                        )}
-                    </ul> */}
                 </main>
                 <Footer />
             </div>

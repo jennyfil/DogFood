@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router";
-import Ctx from "../Ctx";
 import { Row, Col, Form, Button } from "react-bootstrap";
+
+import Ctx from "../Ctx";
 
 export default () => {
     const [name, setName] = useState("");
@@ -26,11 +27,9 @@ export default () => {
             discount: discount,
             pictures: pictures
         }
-        // console.log(body);
         api.addProduct(body)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             if(!data.error) {
                 setGoods(prev => [...prev, data]);
                 clear();

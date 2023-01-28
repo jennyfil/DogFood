@@ -2,7 +2,7 @@ header {
     background-color: rgb(220, 211, 39);
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 10px;
 }
 
 .header-top {
@@ -23,8 +23,8 @@ header {
 
 .header-bottom h2{
     width: 300px;
-    font-size: 1.8em;
-    font-weight: 900;
+    font-size: 1.5em;
+    font-weight: 700;
     line-height: 1.3;
 }
 
@@ -105,11 +105,20 @@ header {
 
 @media(max-width: 540px) {
     header {
-        gap: 16px;
+        gap: 20px;
     }
-
+    
+    .header-top {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
     .header-bottom {
         padding-left: 30px;
+    }
+    .header-bottom h2{
+        font-size: 1.3em;
+        line-height: 1.2;
     }
     .header-bottom p {
         width: 380px;

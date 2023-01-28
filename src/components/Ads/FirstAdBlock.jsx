@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./ads.css";
 
 import presentPic from "./img/present.jpg";

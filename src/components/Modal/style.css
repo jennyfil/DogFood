@@ -68,7 +68,6 @@ input:focus {
 
 button.btn {
     border: none;
-    /* height: 30px; */
     border-radius: 10px;
     background-color: rgb(220, 211, 39);
 }

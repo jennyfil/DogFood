@@ -1,13 +1,14 @@
 import React, {useContext} from "react";
-import Search from "../Search/search";
 import {Link} from "react-router-dom";
-import "./header.css";
-import Ctx from "../../Ctx";
-import { HeartFill } from "react-bootstrap-icons";
 import { Badge } from "react-bootstrap";
-
-import logo from "../img/logo.svg";
 import {PlusCircle} from "react-bootstrap-icons";
+import { HeartFill } from "react-bootstrap-icons";
+
+import "./header.css";
+
+import Ctx from "../../Ctx";
+import Search from "../Search/search";
+import logo from "../img/logo.svg";
 
 export default () => {
     const {user, setUser, setModalActive, favorites, PATH} = useContext(Ctx);
@@ -27,7 +28,6 @@ export default () => {
                 <Link className="logo" to={PATH}>
                     <img src={logo} />
                 </Link>
-                <Search />
                 <nav className="menu">
                     {user && <Link to={PATH + "add"}><PlusCircle style={{fontSize: "20px"}}/></Link>}
                     {user && <Link to={PATH + "favorites"} className="badge-link">
@@ -39,6 +39,9 @@ export default () => {
                     {user && <a href="" onClick={logOut}>Выйти</a>}
                 </nav>
             </div>
+
+            <Search />
+
             <div className="header-bottom">
                 <h2>Крафтовые лакомства для собак</h2>
                 <p>Всегда свежие лакомства ручной работы с доставкой на дом по России и всему миру</p>

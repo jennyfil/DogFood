@@ -1,10 +1,11 @@
 import React, {useContext} from "react";
-import Card from "../components/Card/Card";
 import {Link} from "react-router-dom";
 import {EmojiFrown} from "react-bootstrap-icons";
-import "./pages.css";
-import Ctx from "../Ctx";
 
+import "./pages.css";
+
+import Ctx from "../Ctx";
+import Card from "../components/Card/Card";
 import Pagination from "../components/Pagination";
 import usePagination from "../hooks/usePagination";
 
@@ -27,6 +28,7 @@ export default () => {
                                     )
                                 }
                             </div>
+                            <Pagination paginate={paginate} />
                         </>
                         : 
                         <div className="empty-block">

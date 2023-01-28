@@ -1,9 +1,11 @@
 import React, {useState, useEffect, useContext} from "react";
 import {useParams, Link, useNavigate} from "react-router-dom";
-import Review from "../components/Review/Review";
-import Ctx from "../Ctx";
 import { Row, Col, Form } from "react-bootstrap";
 import { Trash3, Truck, Check2Circle, PencilSquare } from "react-bootstrap-icons";
+
+import Review from "../components/Review/Review";
+import Ctx from "../Ctx";
+import "./pages.css";
 
 export default () => {
     const {api, PATH, user, setGoods} = useContext(Ctx);
@@ -47,7 +49,6 @@ export default () => {
         api.addReview(id, body)
         .then(res => res.json())
         .then(data => {
-            // console.log(data);
             if(!data.error) {
                 setGoods(prev => [...prev, data]);
                 clear();
@@ -132,10 +133,8 @@ export default () => {
                     <div className="product-description__table">
                         <div>Вес</div>
                         <div>{product.wight}</div>
-
                         <div>Количество</div>
                         <div>{product.stock} шт</div>
-                        
                     </div>
                     <span>Отзывы</span>
                     <div className="reviews">
@@ -145,8 +144,7 @@ export default () => {
 
                         <Form 
                         className={active ? "active" : "add-review"}
-                        onSubmit={handlerSubmit}
-                        >
+                        onSubmit={handlerSubmit}>
                             <Row>
                                 <Col xs={12} md={6}>
                                     <Form.Group className="mb-3">

@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import {Link} from "react-router-dom";
-import "./footer.css";
-import Ctx from "../../Ctx";
 
+import "./footer.css";
+
+import Ctx from "../../Ctx";
 import logo from "../img/logo.svg";
 
 export default () => {

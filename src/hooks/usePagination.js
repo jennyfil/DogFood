@@ -19,7 +19,6 @@ export default (data, cnt) => {
     }
 
     const setPageData = () => {
-        //0-11, 12-23, 24-35
         let start = (currentPage - 1) * cnt;
         let end = start + cnt;
         return data.slice(start, end);

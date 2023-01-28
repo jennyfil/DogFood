@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import Ctx from "../../Ctx";
 import "./style.css";
+import noimg from "../img/no-image.png";
 
 export default ({ flag, name, likes, price, pictures, wight, discount, _id }) => {
     const {user, setFavorites, api, setGoods} = useContext(Ctx);
@@ -49,7 +50,7 @@ export default ({ flag, name, likes, price, pictures, wight, discount, _id }) =>
             </span>
 
             <div className="card__pic">
-                <img src={pictures} alt="Здесь будет фотография товара" />
+                <img src={pictures} alt={noimg} />
             </div>
             
             {discount > 0 && <span className="card__price card__old-price">{price} руб</span>}            

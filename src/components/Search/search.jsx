@@ -1,7 +1,9 @@
 import React, {useState, useContext} from "react";
-import "./search.css";
-import Ctx from "../../Ctx";
 import { useNavigate } from "react-router-dom";
+
+import "./search.css";
+
+import Ctx from "../../Ctx";
 import {ReactComponent as SearchImg} from "./img/magnifying-glass-solid.svg";
 import {ReactComponent as CloseImg} from "./img/circle-xmark-regular.svg";
 

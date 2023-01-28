@@ -48,6 +48,9 @@ a:hover {
     main {
         text-align: center;
     }
+    .wrapper {
+        grid-template-rows: 460px auto 200px;
+    }
 
 }
 
@@ -56,6 +59,6 @@ a:hover {
         font-size: 12px;
     }
     .wrapper {
-        grid-template-rows: 350px auto 200px;
+        grid-template-rows: 420px auto 200px;
     }
 }

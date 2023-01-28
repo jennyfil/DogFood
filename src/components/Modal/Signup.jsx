@@ -23,7 +23,6 @@ export default ({change, close}) => {
         e.preventDefault();
         const body = {
             email: email,
-            // group: "group-8",
             password: pwd
         }
         api.signUp(body)
@@ -44,7 +43,7 @@ export default ({change, close}) => {
                     setConfirmPwd("");
                     close(false);
                 } else {
-                    alert(data.message); //в идеале сделать popup!
+                    alert(data.message);
                 }
             })
     }

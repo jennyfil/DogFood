@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/godfood/static/css/main.1a13b398.css",
-    "main.js": "/godfood/static/js/main.e066f9a0.js",
+    "main.css": "/godfood/static/css/main.61a4c4f9.css",
+    "main.js": "/godfood/static/js/main.bfaef145.js",
     "static/media/present.jpg": "/godfood/static/media/present.c8c340cb9aae06f50257.jpg",
     "static/media/dog-food-wet.png": "/godfood/static/media/dog-food-wet.14ca8eafb8934f4eaa75.png",
     "static/media/deer-antlers.png": "/godfood/static/media/deer-antlers.1806e11762310334cf7a.png",
     "static/media/butter.png": "/godfood/static/media/butter.3924230e8115b064403a.png",
     "static/media/dog-toy.png": "/godfood/static/media/dog-toy.e6cdbb8c43d36fe44431.png",
     "static/media/dog-food-mixed.png": "/godfood/static/media/dog-food-mixed.6b957031054338b61797.png",
+    "static/media/no-image.png": "/godfood/static/media/no-image.0229ffbf04c314310f9f.png",
     "static/media/logo.svg": "/godfood/static/media/logo.451d3e7a122ed0d35f9fbc7c206aeef3.svg",
     "index.html": "/godfood/index.html",
     "static/media/circle-xmark-regular.svg": "/godfood/static/media/circle-xmark-regular.8ef6e0a127f37e5c70a1e4bb4cb92f32.svg",
     "static/media/magnifying-glass-solid.svg": "/godfood/static/media/magnifying-glass-solid.06e310dbfbf3ab21da478aef6c037c14.svg",
-    "main.1a13b398.css.map": "/godfood/static/css/main.1a13b398.css.map",
-    "main.e066f9a0.js.map": "/godfood/static/js/main.e066f9a0.js.map"
+    "main.61a4c4f9.css.map": "/godfood/static/css/main.61a4c4f9.css.map",
+    "main.bfaef145.js.map": "/godfood/static/js/main.bfaef145.js.map"
   },
   "entrypoints": [
-    "static/css/main.1a13b398.css",
-    "static/js/main.e066f9a0.js"
+    "static/css/main.61a4c4f9.css",
+    "static/js/main.bfaef145.js"
   ]
 }

@@ -2,9 +2,10 @@ import React, {useContext} from "react";
 import Card from "../components/Card/Card";
 import {Link} from "react-router-dom";
 import {EmojiFrown} from "react-bootstrap-icons";
-import "./pages.css";
-import Ctx from "../Ctx";
 
+import "./pages.css";
+
+import Ctx from "../Ctx";
 import Pagination from "../components/Pagination";
 import usePagination from "../hooks/usePagination";
 
@@ -12,7 +13,7 @@ export default () => {
     const {favorites, PATH} = useContext(Ctx);
     const paginate = usePagination(favorites, 3);
     return (
-            <>
+            <div className="favorites-content">
                {favorites.length > 0
                     ? <>
                         <p className="catalog-header">Каталог товаров</p>
@@ -30,9 +31,9 @@ export default () => {
                     <div className="empty-block">
                         <EmojiFrown />
                         <p>Вы еще не добавили любимые товары</p>
-                        <Link to={PATH + "catalog"} className="btn">На главную</Link>
+                        <Link to={PATH + "catalog"} className="product__btn-card">В каталог</Link>
                     </div>
                 } 
-            </>
+            </div>
     )
 }
