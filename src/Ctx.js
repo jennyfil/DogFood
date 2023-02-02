@@ -15,5 +15,7 @@ export default React.createContext({
     setModalActive: () => {},
     setGoods: () => {},
     setVisibleGoods: () => {},
-    setFavorites:() => {}
+    setFavorites:() => {},
+    basket: [],
+    setBasket: () => {}
 });

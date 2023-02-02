@@ -14,6 +14,7 @@ import Product from "./pages/Product.jsx";
 import AddForm from "./pages/AddForm";
 import ModifyForm from "./pages/ModifyForm";
 import Favorites from "./pages/Favorites";
+import Basket from "./pages/Basket";
 
 import {Api} from "./Api.js";
 import dataLocal from "./assets/data.json";
@@ -44,6 +45,7 @@ const App = () => {
     const [goods, setGoods] = useState([]);
     const [visibleGoods, setVisibleGoods] = useState(goods);
     const [favorites, setFavorites] = useState([]);
+    const [basket, setBasket] = useState(localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : []);
 
     useEffect(() => {
         if(token) {
@@ -76,33 +78,41 @@ const App = () => {
             api.getProducts()
             .then(res => res.json())
             .then(data => {
+                setVisibleGoods(data.products);
                 setGoods(data.products);
             })
         }
     }, [api])
 
     useEffect(() => {
-        setVisibleGoods(goods);
-        setFavorites(goods.filter(el => el.likes && el.likes.includes(user._id)))
+        setFavorites(goods.filter(el => {
+            return el.likes && el.likes.includes(user._id)
+        }))
     }, [goods])
+
+    useEffect(() => {
+        localStorage.setItem('basket', JSON.stringify(basket));
+    }, [basket]);
 
     return (
         <Ctx.Provider value={{
-            user: user,
-            token: token,
-            api: api,
-            modalActive: modalActive,
-            goods: goods,
-            visibleGoods: visibleGoods,
-            favorites: favorites,
-            setUser: setUser,
-            setToken: setToken,
-            setApi: setApi,
-            setModalActive: setModalActive,
-            setGoods: setGoods,
-            setVisibleGoods: setVisibleGoods,
-            setFavorites: setFavorites,
-            PATH: PATH
+            user,
+            token,
+            api,
+            modalActive,
+            goods,
+            visibleGoods,
+            favorites,
+            setUser,
+            setToken,
+            setApi,
+            setModalActive,
+            setGoods,
+            setVisibleGoods,
+            setFavorites,
+            PATH,
+            basket,
+            setBasket
         }}>
             <div className="wrapper">
                 <Header />
@@ -115,7 +125,7 @@ const App = () => {
                         <Route path={PATH + "add"} element={<AddForm />} />
                         <Route path={PATH + "modify/:id"} element={<ModifyForm />} />
                         <Route path={PATH + "favorites"} element={<Favorites />} />
-
+                        <Route path={PATH + "basket"} element={<Basket />} />
                     </Routes>
                 </main>
                 <Footer />

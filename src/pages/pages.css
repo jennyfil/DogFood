@@ -74,7 +74,7 @@ a {
     cursor: pointer;
     height: auto;
     border: none;
-    background-color: #fff;
+    background-color: transparent;
 }
 
 .product-card__link {
@@ -291,6 +291,17 @@ Form {
 /*--------- Favorites ---------*/
 .favorites-content {
     margin: 30px 0;
+}
+
+/*--------- Basket ---------*/
+.basket {
+    margin: 30px 0 100px;
+}
+
+.basket p{
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 30px;
 }
 
 

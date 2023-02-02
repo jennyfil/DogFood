@@ -4,13 +4,15 @@ import "./style.css";
 import noimg from "../img/no-image.png";
 
 export default ({ flag, name, likes, price, pictures, wight, discount, _id }) => {
-    const {user, setFavorites, api, setGoods} = useContext(Ctx);
+    const {user, setFavorites, api, setGoods, setBasket} = useContext(Ctx);
     const discountPrice = Math.round(price - (price * discount) / 100);
     const [like, setLike] = useState(likes && likes.includes(user._id));
+    const [mark, setMark] = useState(false);
     
     const update = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        setMark(true);
         setLike(!like);
 
         api.setLike(_id, like)
@@ -25,14 +27,34 @@ export default ({ flag, name, likes, price, pictures, wight, discount, _id }) =>
         })
     }
 
-    useEffect(() => {
-        api.getProducts()
-        .then(res => res.json())
-        .then(data => {
-            if(!data.error) {
-                setGoods(data.products);
+    const buy = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setBasket(prev => {
+            const test = prev.filter(el => el.id === _id);
+            if(test.length) {
+                return prev.map(el => {
+                    if(el.id === _id) {
+                        el.cnt++;
+                    }
+                    return el;
+                })
+            } else {
+                return [...prev, {id: _id, cnt: 1}];
             }
         })
+    }
+
+    useEffect(() => {
+        if(mark) {
+            api.getProducts()
+            .then(res => res.json())
+            .then(data => {
+                if(!data.error) {
+                    setGoods(data.products);
+                }
+            })
+        }
     }, [like])
 
     return (
@@ -58,7 +80,7 @@ export default ({ flag, name, likes, price, pictures, wight, discount, _id }) =>
             <div className="card__weight">{wight}</div>
             <h3>{name}</h3>
 
-            {!flag ? <button className="btn-card">Купить</button> : ""}
+            {!flag ? <button className="btn-card" onClick={buy}>Купить</button> : ""}
         </div>
     )
 }
