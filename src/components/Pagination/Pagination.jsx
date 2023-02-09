@@ -1,15 +1,19 @@
-import React, { useState } from "react";
-import {CaretRightFill, CaretLeftFill} from "react-bootstrap-icons";
+import React from "react";
+import { CaretRightFill, CaretLeftFill } from "react-bootstrap-icons";
 
 import "./style.css";
 
-export default ({paginate}) => {
+export default ({ paginate }) => {
+    // const {currentPage, maxPage} = usePagination(data, cnt);
+
     const max = paginate.maxPage;
     const current = paginate.currentPage;
     const pages = [];
+
     for(let i=0; i<max; i++) {
         pages.push(i+1);
     }
+
     return (
         <div className="page-container">
             <button className="btn page" disabled={current === 1} onClick={paginate.previous}>
@@ -17,18 +21,14 @@ export default ({paginate}) => {
             </button>
 
             {pages.map(p => <button 
-                className="btn page"
+                className={p === current ? "btn page btn-active" : "btn page" }
                 key={p}
-                style={{
-                    backgroundColor: p === current && "#222",
-                    color: p === current && "yellow",
-                }}
-                onClick={e => paginate.step(p)}>{p}</button>)}
+                onClick={e => {paginate.step(p)}}>{p}
+            </button>)}
 
             <button className="btn page" disabled={current === max} onClick={paginate.next}>
                 <CaretRightFill />
             </button>
-
         </div>
     )
 }

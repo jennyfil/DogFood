@@ -1,14 +1,26 @@
 import React, { useState, useContext, useEffect } from "react";
-import Ctx from "../../Ctx";
+
+import noimg from "../../assets/img/no-image.png";
+import Ctx from "../../context/Ctx";
+import { productDiscountPrice } from "../../utils/constants";
+
 import "./style.css";
-import noimg from "../img/no-image.png";
 
 export default ({ flag, name, likes, price, pictures, wight, discount, _id }) => {
-    const {user, setFavorites, api, setGoods, setBasket} = useContext(Ctx);
-    const discountPrice = Math.round(price - (price * discount) / 100);
+    const {user, setFavorites, api, setGoods, setVisibleGoods, setBasket} = useContext(Ctx);
     const [like, setLike] = useState(likes && likes.includes(user._id));
     const [mark, setMark] = useState(false);
     
+    const dataFilter = (prev, data) => {
+        return prev.map(el => {
+            if(el._id === data._id){
+                return data;
+            } else {
+                return el;
+            }
+        })
+    }
+
     const update = (e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -16,15 +28,18 @@ export default ({ flag, name, likes, price, pictures, wight, discount, _id }) =>
         setLike(!like);
 
         api.setLike(_id, like)
-        .then(res => res.json())
         .then(data => {
             setFavorites(prev => {
                 let arr = prev.filter(el => el._id === _id)
                 return arr.length > 0 ? 
                 prev.filter(el => el._id !== _id) : 
                 [...prev, data]
-            })
+            });
+
+            setGoods(prev => dataFilter(prev, data));
+            setVisibleGoods(prev => dataFilter(prev, data));
         })
+    
     }
 
     const buy = (e) => {
@@ -39,23 +54,9 @@ export default ({ flag, name, likes, price, pictures, wight, discount, _id }) =>
                     }
                     return el;
                 })
-            } else {
-                return [...prev, {id: _id, cnt: 1}];
-            }
+            } else return [...prev, {id: _id, cnt: 1}]; 
         })
     }
-
-    useEffect(() => {
-        if(mark) {
-            api.getProducts()
-            .then(res => res.json())
-            .then(data => {
-                if(!data.error) {
-                    setGoods(data.products);
-                }
-            })
-        }
-    }, [like])
 
     return (
         <div className="card">
@@ -64,10 +65,9 @@ export default ({ flag, name, likes, price, pictures, wight, discount, _id }) =>
             </div>
 
             <span className="card__sticky card__sticky_top-right" onClick={update}>
-                {
-                like
-                ? <i className="fa-solid fa-heart"></i>
-                : <i className="fa-regular fa-heart"></i>
+                {like
+                ? <i className="fa-solid fa-heart" />
+                : <i className="fa-regular fa-heart" />
                 }
             </span>
 
@@ -76,11 +76,15 @@ export default ({ flag, name, likes, price, pictures, wight, discount, _id }) =>
             </div>
             
             {discount > 0 && <span className="card__price card__old-price">{price} руб</span>}            
-            <span className={discount > 0 ? "card__price card__price_type_discount" : "card__price"}>{discountPrice} руб</span>
+            <span className={discount > 0 
+                ? "card__price card__price_type_discount"
+                : "card__price"}>
+                    {productDiscountPrice(price, discount)} руб
+            </span>
             <div className="card__weight">{wight}</div>
             <h3>{name}</h3>
 
-            {!flag ? <button className="btn-card" onClick={buy}>Купить</button> : ""}
+            {!flag && <button className="btn-card" onClick={buy}>Купить</button>}
         </div>
     )
 }

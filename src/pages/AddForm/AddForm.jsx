@@ -2,34 +2,32 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Row, Col, Form } from "react-bootstrap";
 
-import Ctx from "../Ctx";
+import Ctx from "../../context/Ctx";
+import { PATH } from"../../utils/constants";
+
+import './addForm.css';
 
 export default () => {
     const [name, setName] = useState("");
-    const [price, setPrice] = useState(100);
+    const [price, setPrice] = useState(0);
     const [weight, setWeight] = useState("");
-    const [stock, setStock] = useState(50);
+    const [stock, setStock] = useState(0);
     const [discount, setDiscount] = useState(0);
     const [description, setDescription] = useState("");
     const [pictures, setPictures] = useState("");
 
-    const {api, PATH, setGoods} = useContext(Ctx);
+    const {api, setGoods} = useContext(Ctx);
     const navigate = useNavigate();
     const {id} = useParams();
 
-    useEffect(() => {
-        api.getProductById(id)
-        .then(res => res.json())
-        .then(data => {
-            setName(data.name)
-            setPrice(data.price)
-            setWeight(data.wight)
-            setStock(data.stock)
-            setDiscount(data.discount)
-            setDescription(data.description)
-            setPictures(data.pictures)
-        })
-    }, [])
+    
+    const modifyData = (data) => {
+        if(!data.error) {
+            setGoods(prev => [...prev, data]);
+            clear();
+            navigate(`${PATH}catalog/${data._id}`);
+        }
+    }
 
     const handler = (e) => {
         e.preventDefault();
@@ -40,42 +38,59 @@ export default () => {
             stock: stock || 0,
             description: description || "Тут скоро появится описание товара",
             discount: discount,
-            pictures: pictures
+            pictures: pictures,
         }
 
-        api.modifyProduct(id, body)
-        .then(res => res.json())
-        .then(data => {
-            if(!data.error) {
-                setGoods(prev => [...prev, data]);
-                clear();
-                navigate(`${PATH}catalog/${data._id}`);
-            }
-        })
+        if(id) {
+            api.modifyProduct(id, body)
+            .then(data => modifyData(data))
+        } else {
+            api.addProduct(body)
+            .then(data => modifyData(data))
+        }
+        
     }
 
-    const clear = (e) => {
+    useEffect(() => {
+        if(id) {
+            api.getProductById(id)
+            .then(data => {
+                setName(data.name)
+                setPrice(data.price)
+                setWeight(data.wight)
+                setStock(data.stock)
+                setDiscount(data.discount)
+                setDescription(data.description)
+                setPictures(data.pictures)
+            })
+        }
+    }, [])
+
+    const clear = () => {
         setName("");
-        setPrice(100);
+        setPrice(0);
         setWeight("");
-        setStock(10);
+        setStock(0);
         setDiscount(0);
         setDescription("");
         setPictures("");
     }
 
     return (
-        <>
-            <Link className="product-card__link" to={`${PATH}catalog/${id}`}>
-                <i className="fa-solid fa-angle-left"></i>  Назад
+        <div className="addForm">
+            <Link className="product-card__link" to={id ? `${PATH}catalog/${id}` : `${PATH}catalog`}>
+                <i className="fa-solid fa-angle-left" />  Назад
             </Link>
-            <p className="form-header">Изменить товар</p>
+            <p className="form-header">
+                {id ? "Изменить товар" : "Добавить товар"}
+            </p>
+
             <Form onSubmit={handler}>
                 <Row>
                     <Col xs={12} md={6}>
                         <Form.Group className="mb-3">
                             <Form.Label>Название товара</Form.Label>
-                            <Form.Control 
+                            <Form.Control
                                 type="text"
                                 value={name} 
                                 onChange={e => setName(e.target.value)} />
@@ -83,7 +98,7 @@ export default () => {
 
                         <Form.Group className="mb-3">
                             <Form.Label>Цена</Form.Label>
-                            <Form.Control 
+                            <Form.Control
                                 type="number" 
                                 value={price} 
                                 onChange={e => setPrice(e.target.value)}
@@ -101,21 +116,19 @@ export default () => {
 
                         <Form.Group className="mb-3">
                             <Form.Label>Скидка</Form.Label>
-                            <Form.Select 
-                                value={discount} 
-                                onChange={e => setDiscount(e.target.value)}>
-                                    <option value={0}>Без скидки</option>
-                                    <option value={5}>5%</option>
-                                    <option value={10}>10%</option>
-                                    <option value={15}>15%</option>
-                                    <option value={20}>20%</option>
-                                    <option value={25}>25%</option>
+                            <Form.Select value={discount}  onChange={e => setDiscount(e.target.value)}>
+                                <option value={0}>Без скидки</option>
+                                <option value={5}>5%</option>
+                                <option value={10}>10%</option>
+                                <option value={15}>15%</option>
+                                <option value={20}>20%</option>
+                                <option value={25}>25%</option>
                             </Form.Select>
                         </Form.Group>
 
                         <Form.Group className="mb-3">
                             <Form.Label>Количество</Form.Label>
-                            <Form.Control 
+                            <Form.Control
                                 type="number" 
                                 value={stock} 
                                 onChange={e => setStock(e.target.value)} 
@@ -125,7 +138,10 @@ export default () => {
                     <Col xs={12} md={6}>
                         <div 
                             className="form-preview mb-2" 
-                            style={{backgroundImage: pictures ? `url(${pictures})` : "url(https://www.chanchao.com.tw/images/default.jpg)"}} />
+                            style={{backgroundImage: pictures 
+                                ? `url(${pictures})`
+                                : "url(https://www.chanchao.com.tw/images/default.jpg)"}}
+                        />
 
                         <Form.Group className="mb-3">
                             <Form.Label>Изображение</Form.Label>
@@ -145,11 +161,11 @@ export default () => {
                         </Form.Group>
 
                         <button className="product__btn-card" type="submit">
-                            Изменить
+                            {id ? "Изменить" : "Добавить"}
                         </button>
                     </Col>
                 </Row>
             </Form>
-        </>
+        </div>
     )
 }

@@ -1,0 +1,10 @@
+.addForm {
+    padding: 50px;
+}
+
+.form-preview {
+    height: 106px;
+    background-size: contain;
+    background-position: top right;
+    background-repeat: no-repeat;
+}

@@ -2,11 +2,16 @@
     display: flex;
     gap: 10px;
     justify-content: center;
-    margin: 20px 0;
+    margin: 30px;
 }
 
 .page-container .page {
     height: auto;
     font-size: 14px;
 
+}
+
+button.btn-active {
+    background-color: #222;
+    color: yellow;
 }

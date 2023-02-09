@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import {Link} from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+
+import logo from "../../assets/img/logo.svg";
+import { PATH } from"../../utils/constants";
 
 import "./footer.css";
 
-import Ctx from "../../Ctx";
-import logo from "../img/logo.svg";
-
 export default () => {
-    const {PATH} = useContext(Ctx);
     const year = new Date().getFullYear();
+
     return (
         <footer>
             <div className="footer__logo">
@@ -26,15 +26,9 @@ export default () => {
                     <a href="mailto:dogfood.ru@mail.ru">dogfood.ru@mail.ru</a>
                 </div>
                 <div className="social-media">
-                    <a href="#">
-                        <i className="fa-brands fa-telegram"></i>
-                    </a>
-                    <a href="#">
-                        <i className="fa-brands fa-vk"></i>
-                    </a>
-                    <a href="#">
-                        <i className="fa-brands fa-skype"></i>
-                    </a>
+                    <Link><i className="fa-brands fa-telegram" /></Link>
+                    <Link><i className="fa-brands fa-vk" /></Link>
+                    <Link><i className="fa-brands fa-skype" /></Link>
                 </div>
             </div>
         </footer>

@@ -1,0 +1,52 @@
+.basket {
+    margin: 100px 20px;
+}
+
+.basket span {
+    display: block;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.basket-left {
+    float: left;
+    margin-bottom: 100px;
+    width: 65%;
+}
+
+.basket-right {
+    padding: 10px 20px;
+    float: right;
+    width: 30%;
+    box-shadow: 0 0 5px #2226;
+    border-radius: 20px;
+    margin-bottom: 100px;
+}
+
+.table th {
+	font-weight: bold;
+	padding: 7px;
+}
+
+.table td {
+	padding: 7px;
+}
+
+.bolder {
+    font-weight: 700;
+}
+
+.table tr th,
+.table tr td {
+    border: none;
+}
+
+
+tfoot td:last-child {
+    font-size: 1.2em;
+}
+
+tfoot tr:last-child {
+    padding-top: 50px;
+}

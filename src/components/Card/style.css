@@ -114,12 +114,10 @@ h3 {
     background-color: #f6b845; 
 }
 
+
 @media(max-width: 540px) {
-    .card {
-        width: 290px;
-    }
     .card__pic {
-        height: 150px;
+        max-height: 150px;
     }
     .card h3 {
         align-self: stretch;

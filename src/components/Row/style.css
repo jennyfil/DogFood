@@ -1,0 +1,17 @@
+.row__price-block {
+    position: relative;
+}
+
+.row__price {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.row__old-price {
+    font-size: 1em;
+    font-weight: 700;
+    position: absolute;
+    top: -25px;
+    right: 0;
+    text-decoration: line-through;
+}

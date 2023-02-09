@@ -1,0 +1,37 @@
+Form {
+    margin-bottom: 30px;
+}
+
+.form-header {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+.add-review {
+    display: none;
+}
+
+.active {
+    display: block;
+    margin-bottom: 40px;
+}
+
+
+.btn-review {
+    padding: 10px 20px;
+    background-color: rgb(243, 242, 242);
+    border-radius: 20px;
+    font-size: 1em;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    margin-bottom: 30px;
+}
+
+.btn-review:hover {
+    color: black;
+    background-color: rgb(187, 186, 186);
+    border: none;
+}
+

@@ -1,3 +1,5 @@
+const onResponce = (res) => (res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
+
 class Api {
     constructor(token) {
         this.path = "https://api.react-learning.ru";
@@ -13,7 +15,7 @@ class Api {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body)
-        });
+        }).then(onResponce);
     }
 
     signIn(body) {
@@ -23,36 +25,7 @@ class Api {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body)
-        });
-    }
-
-    resetPassword() {
-        return fetch(`${this.path}/password-reset/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": `Bearer ${this.token}`
-            }
-        });
-    }
-
-    changePassword(body) {
-        return fetch(`${this.path}/password-reset/${this._id}/${this.token}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": `Bearer ${this.token}`
-            },
-            body: JSON.stringify(body)
-        });
-    }
-
-    getUsers() {
-        return fetch(`${this.path}/v2/group-8/users`, {
-            headers: {
-                "authorization": `Bearer ${this.token}`
-            }
-        })
+        }).then(onResponce);
     }
 
     getUserById(userId) {
@@ -60,37 +33,18 @@ class Api {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }
-        })
+        }).then(onResponce);
     }
 
-    getUserByToken() {
-        return fetch(`${this.path}/v2/group-8/users/me`, {
-            headers: {
-                "authorization": `Bearer ${this.token}`
-            }
-        })
-    }
-
-    changeUserInfo(body) {
-        return fetch(`${this.path}/v2/group-8/users/me`, {
+    updUserInfo(body, img = false) {
+        return fetch(`${this.path}/v2/${this.group}/users/me${img ? "/avatar" : ""}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 "authorization": `Bearer ${this.token}`
             },
             body: JSON.stringify(body)
-        })
-    }
-
-    changeUserAvatar(body) {
-        return fetch(`${this.path}/v2/group-8/users/me/avatar`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": `Bearer ${this.token}`
-            },
-            body: JSON.stringify(body)
-        })
+        }).then(onResponce);
     }
 
     getProducts() {
@@ -98,7 +52,7 @@ class Api {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }
-        })
+        }).then(onResponce);
     }
 
     getProductById(productId) {
@@ -106,7 +60,7 @@ class Api {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }
-        })
+        }).then(onResponce);
     }
 
     addProduct(body) {
@@ -117,7 +71,7 @@ class Api {
                 "authorization": `Bearer ${this.token}`
             },
             body: JSON.stringify(body)
-        });
+        }).then(onResponce);
     }
 
     modifyProduct(productId, body) {
@@ -128,7 +82,7 @@ class Api {
                 "authorization": `Bearer ${this.token}`
             },
             body: JSON.stringify(body)
-        })
+        }).then(onResponce);
     }
 
     deleteProduct(productId) {
@@ -137,7 +91,7 @@ class Api {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }
-        })
+        }).then(onResponce);
     }
 
     setLike(productId, isLike) {
@@ -145,7 +99,7 @@ class Api {
             method: isLike ? "DELETE" : "PUT",
             headers: {
                 "authorization": `Bearer ${this.token}`            }
-        })
+        }).then(onResponce);
     }
 
     addReview(productId, body) {
@@ -156,7 +110,7 @@ class Api {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body)
-        })
+        }).then(onResponce);
     }
 
     deleteReview(productId, reviewId) {
@@ -165,25 +119,8 @@ class Api {
             headers: {
                 "authorization": `Bearer ${this.token}`
             }
-        })
+        }).then(onResponce);
     }
-
-    getReviews() {
-        return fetch(`${this.path}/products/review/`, {
-            headers: {
-                "authorization": `Bearer ${this.token}`
-            }
-        })
-    }
-
-    getProductReview(productId) {
-        return fetch(`${this.path}/products/review/${productId}`, {
-            headers: {
-                "authorization": `Bearer ${this.token}`
-            }
-        })
-    }
-
 }
 
 export {Api};

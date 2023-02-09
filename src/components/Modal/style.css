@@ -11,8 +11,12 @@
     z-index: 100;
 }
 
+.d-flex {
+    display: flex;
+}
+
 .modal {
-    width: 300px;
+    width: 320px;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -27,23 +31,19 @@
 .modal h2 {
     margin: 0;
     text-align: center;
+    font-size: 1.6em;
 }
 
 .modal-close {
-    width: 20px;
-    height: 20px;
-    background-color: #222;
-    border-radius: 50%;
-    border: 2px solid;
     box-sizing: border-box;
     position: absolute;
-    top: -8px;
-    right: -8px;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
 }
 
 .modal-close:hover {
-    background-color: rgb(220, 211, 39);
+    color: rgb(220, 211, 39);
 }
 
 form {
@@ -76,4 +76,10 @@ button.link {
     background-color: transparent;
     border: 1px solid rgb(220, 211, 39);
     box-sizing: border-box;
+}
+
+.error {
+    text-align: left;
+    font-size: 0.9em;
+    padding-left: 5px;
 }

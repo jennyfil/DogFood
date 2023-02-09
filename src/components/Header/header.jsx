@@ -1,16 +1,18 @@
 import React, {useContext} from "react";
 import {Link} from "react-router-dom";
 import { Badge } from "react-bootstrap";
-import { HeartFill, PlusCircle, Basket3 } from "react-bootstrap-icons";
+import { HeartFill, PlusCircle, Basket3, BoxArrowRight } from "react-bootstrap-icons";
+
+import Search from "../Search/Search";
+import logo from "../../assets/img/logo.svg";
+import { PATH } from"../../utils/constants";
+import Ctx from "../../context/Ctx";
 
 import "./header.css";
 
-import Ctx from "../../Ctx";
-import Search from "../Search/search";
-import logo from "../img/logo.svg";
 
 export default () => {
-    const {user, setUser, setModalActive, favorites, PATH, basket} = useContext(Ctx);
+    const {user, setUser, setModalActive, favorites, basket} = useContext(Ctx);
     
     const logIn = (e) => {
         e.preventDefault();
@@ -29,7 +31,9 @@ export default () => {
                     <img src={logo} />
                 </Link>
                 <nav className="menu">
-                    {user && <Link to={PATH + "add"}><PlusCircle style={{fontSize: "20px"}}/></Link>}
+                    {user && <Link to={PATH + "add"}>
+                        <PlusCircle style={{fontSize: "20px"}}/>
+                    </Link>}
                     
                     {user && <Link to={PATH + "favorites"} className="badge-link">
                         <HeartFill style={{fontSize: "20px"}}/>
@@ -44,22 +48,14 @@ export default () => {
                     </Link>}
 
                     {user && user.name && <Link to={PATH + "profile"}>{user.name}</Link>}
-                    {!user && <a href="" onClick={logIn}>Войти</a>}
-                    {/* {user && <a href="" onClick={logOut}>Выйти</a>} */}
+                    {!user && <Link onClick={logIn}>Войти</Link>}
+                    {user && <Link onClick={logOut}>
+                        <BoxArrowRight style={{fontSize: "20px"}} />
+                    </Link>}
                 </nav>
             </div>
 
             <Search />
-
-            <div className="header-bottom">
-                <h2>Крафтовые лакомства для собак</h2>
-                <p>Всегда свежие лакомства ручной работы с доставкой на дом по России и всему миру</p>
-                <Link className="btn-link" to={PATH + "catalog"}>
-                    Каталог
-                    <i className="fa-solid fa-angle-right"></i>
-                </Link>
-            </div>
-
         </header>
     )
 }

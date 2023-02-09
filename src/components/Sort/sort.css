@@ -1,0 +1,17 @@
+.sort-block {
+    display: flex;
+    gap: 10px;
+    margin: 30px 0;
+}
+
+.btn.sort {
+    background-color: #222;
+    color: orange;
+}
+
+
+@media(max-width: 540px) {
+    .sort-block>button {
+        font-size: 14px;
+    }
+}
