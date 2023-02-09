@@ -15,7 +15,6 @@ export default ({ change, close }) => {
 
     const {register, handleSubmit, formState: { errors }} = useForm({ mode: 'onBlur' });
 
-
     const checkPwd = (val, type="main") => {
         type === "main" ? setPwd(val) : setConfirmPwd(val);
         if(val) {

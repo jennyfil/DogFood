@@ -10,7 +10,6 @@ import Catalog from "./pages/Catalog/Catalog";
 import Profile from "./pages/Profile/Profile";
 import Product from "./pages/Product/Product";
 import AddForm from "./pages/AddForm/AddForm";
-// import Search from "./components/Search/Search";
 import Favorites from "./pages/Favorites/Favorites";
 import Basket from "./pages/Basket/Basket";
 import BlockToCatalog from "./components/BlockToCatalog/BlockToCatalog";
@@ -88,7 +87,6 @@ const App = () => {
     useEffect(() => {
         localStorage.setItem('basket', JSON.stringify(basket));
     }, [basket]);
-
 
     return (
         <Ctx.Provider value={{

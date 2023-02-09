@@ -25,7 +25,7 @@ export default ({ fromPage }) => {
                 <Link to={PATH} className="product__btn-card">На главную</Link>
             </>}
             {fromPage === 'noAuth' && <>
-                <p style={{width: 250}}>Простите, у вас нет доступа к товарам без авторизации</p>
+                <p>Авторизируйтесь, чтобы получить доступ к товарам</p>
                 <Link to={PATH} className="product__btn-card">На главную</Link>
             </>}
 

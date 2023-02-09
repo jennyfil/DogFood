@@ -4,8 +4,6 @@ import { CaretRightFill, CaretLeftFill } from "react-bootstrap-icons";
 import "./style.css";
 
 export default ({ paginate }) => {
-    // const {currentPage, maxPage} = usePagination(data, cnt);
-
     const max = paginate.maxPage;
     const current = paginate.currentPage;
     const pages = [];
