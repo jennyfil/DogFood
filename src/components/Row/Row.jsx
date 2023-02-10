@@ -55,14 +55,16 @@ export default ({ name, pictures, cnt, price, id, discount }) => {
     return (
         <tr className="align-middle">
             <td>
-                <Image src={pictures} alt={name} height="100" />
+                <Image className="row_img" src={pictures} alt={name} 
+                // height="100" 
+                />
             </td>
             <td>{name}</td>
             <td>
                 <ButtonGroup>
-                    <Button variant="warning" onClick={decrement}>-</Button>
+                    <Button className="btn_row" variant="warning" onClick={decrement}>-</Button>
                     <Button variant="light" disabled>{n}</Button>
-                    <Button variant="warning" onClick={increment}>+</Button>
+                    <Button className="btn_row" variant="warning" onClick={increment}>+</Button>
                 </ButtonGroup>
             </td>
             <td className="position-relative">

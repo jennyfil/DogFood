@@ -64,7 +64,7 @@ export default () => {
                             <tbody>
                                 <tr>
                                     <td>Товары</td>
-                                    <td>{ basket.reduce((acc, el, i) => {
+                                    <td className="nowrap">{ basket.reduce((acc, el, i) => {
                                             acc += el.cnt * gds[i].price
                                             return acc;
                                         }, 0) } ₽
@@ -73,7 +73,7 @@ export default () => {
 
                                 <tr>
                                     <td>Скидка</td>
-                                    <td className="product__price_type_discount"> { basket.reduce((acc, el, i) => {
+                                    <td className="product__price_type_discount nowrap"> { basket.reduce((acc, el, i) => {
                                             acc += el.cnt * (gds[i].price - productDiscountPrice(gds[i].price, gds[i].discount))
                                             return acc;
                                         }, 0) } ₽
@@ -85,7 +85,7 @@ export default () => {
                             <tfoot>
                                 <tr className="bolder">
                                     <td >Общая стоимость</td>
-                                    <td>{ basket.reduce((acc, el, i) => {
+                                    <td className="nowrap">{ basket.reduce((acc, el, i) => {
                                             acc += el.cnt * productDiscountPrice(gds[i].price, gds[i].discount)
                                             return acc;
                                         }, 0) } ₽

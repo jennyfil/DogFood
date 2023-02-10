@@ -15,7 +15,7 @@ export default ({ author, rating, text, created_at, product, _id }) => {
 
     
     const deleteReview = () => {
-        if(author===user._id) {
+        if(author === user._id) {
             api.deleteReview(product, _id)
             .then(data => {
                 if(!data.error) {

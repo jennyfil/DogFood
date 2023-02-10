@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dogfood/static/css/main.eb9c8680.css",
-    "main.js": "/dogfood/static/js/main.978a51ae.js",
+    "main.css": "/dogfood/static/css/main.93da4c1f.css",
+    "main.js": "/dogfood/static/js/main.abd9a866.js",
     "static/media/present.jpg": "/dogfood/static/media/present.c8c340cb9aae06f50257.jpg",
     "static/media/dog-food-wet.png": "/dogfood/static/media/dog-food-wet.14ca8eafb8934f4eaa75.png",
     "static/media/deer-antlers.png": "/dogfood/static/media/deer-antlers.1806e11762310334cf7a.png",
@@ -13,11 +13,11 @@
     "index.html": "/dogfood/index.html",
     "static/media/circle-xmark-regular.svg": "/dogfood/static/media/circle-xmark-regular.8ef6e0a127f37e5c70a1e4bb4cb92f32.svg",
     "static/media/magnifying-glass-solid.svg": "/dogfood/static/media/magnifying-glass-solid.06e310dbfbf3ab21da478aef6c037c14.svg",
-    "main.eb9c8680.css.map": "/dogfood/static/css/main.eb9c8680.css.map",
-    "main.978a51ae.js.map": "/dogfood/static/js/main.978a51ae.js.map"
+    "main.93da4c1f.css.map": "/dogfood/static/css/main.93da4c1f.css.map",
+    "main.abd9a866.js.map": "/dogfood/static/js/main.abd9a866.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb9c8680.css",
-    "static/js/main.978a51ae.js"
+    "static/css/main.93da4c1f.css",
+    "static/js/main.abd9a866.js"
   ]
 }

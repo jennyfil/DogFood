@@ -1,10 +1,15 @@
+.row_img {
+    height: 100px;
+}
+
 .row__price-block {
     position: relative;
 }
 
 .row__price {
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .row__old-price {
@@ -14,4 +19,27 @@
     top: -25px;
     right: 0;
     text-decoration: line-through;
+}
+
+
+
+@media (max-width: 420px) {
+    .row_img {
+        height: 60px;
+    }
+    .btn.btn_row {
+        padding: 3px 4px;
+    }
+    th {
+        font-size: 0.9em;
+    }
+    td{
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 350px) {
+    .row_img {
+        height: 50px;
+    }
 }

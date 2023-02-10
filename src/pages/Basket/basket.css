@@ -4,7 +4,7 @@
 
 .basket span {
     display: block;
-    font-size: 1.6em;
+    font-size: 1.4em;
     font-weight: 700;
     margin-bottom: 20px;
 }
@@ -44,9 +44,30 @@
 
 
 tfoot td:last-child {
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 
 tfoot tr:last-child {
     padding-top: 50px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+
+
+@media(max-width: 720px) {
+    .basket {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin: 20px;
+    }
+    .basket-left,
+    .basket-right {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
 }
