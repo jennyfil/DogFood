@@ -16,14 +16,28 @@ export default () => {
     const [description, setDescription] = useState("");
     const [pictures, setPictures] = useState("");
 
-    const {api, setGoods} = useContext(Ctx);
+    const {api, setGoods, setVisibleGoods} = useContext(Ctx);
     const navigate = useNavigate();
     const {id} = useParams();
 
     
     const modifyData = (data) => {
         if(!data.error) {
-            setGoods(prev => [...prev, data]);
+            setGoods(prev => prev.map(el => {
+                    if(el._id === data._id) {
+                        return data;
+                    } else {
+                        return el;
+                    }
+                }));
+            setVisibleGoods(prev => prev.map(el => {
+                if(el._id === data._id) {
+                    return data;
+                } else {
+                    return el;
+                }
+            }));
+
             clear();
             navigate(`${PATH}catalog/${data._id}`);
         }
@@ -43,7 +57,9 @@ export default () => {
 
         if(id) {
             api.modifyProduct(id, body)
-            .then(data => modifyData(data))
+            .then(data => {
+                console.log(data);
+                modifyData(data)})
         } else {
             api.addProduct(body)
             .then(data => modifyData(data))

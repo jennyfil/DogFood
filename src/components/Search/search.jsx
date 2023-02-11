@@ -11,13 +11,11 @@ import "./search.css";
 
 export default () => {
     const navigate = useNavigate();
-    const {goods, setVisibleGoods} = useContext(Ctx);
+    const {goods, setVisibleGoods, visibleGoods} = useContext(Ctx);
     const [text, setText] = useState("");
-    const [searchData, setSearchData] = useState(goods);
 
     const clearSearch = () => {
         setText("");
-        setSearchData(goods);
         setVisibleGoods(goods);
     }
 
@@ -25,7 +23,6 @@ export default () => {
         navigate(PATH + "catalog");
         setText(e.target.value);
         let arr = goods.filter(el => el.name.toLowerCase().includes(e.target.value.toLowerCase()));
-        setSearchData(arr);
         setVisibleGoods(arr);
     }
 
@@ -37,8 +34,8 @@ export default () => {
             </button>
             {text && <div className="search-result">
                 По запросу <b>{text}</b>&nbsp;
-                {searchData.length > 0 
-                    ? `найдено ${searchData.length} товаров`
+                {visibleGoods.length > 0 
+                    ? `найдено ${visibleGoods.length} товаров`
                     : "не найдено ни одного товара"
                 }
             </div>}
